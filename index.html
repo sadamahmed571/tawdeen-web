@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tawteen 360 - نظام متكامل لإدارة الأعمال والموارد">
+    <title>Tawteen 360 | توطين 360</title>
+
+    <!-- Google Fonts: Tajawal for Arabic, Inter for Latin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F4EA3',
+                        secondary: 'hsl(199, 72%, 42%)',
+                        success: 'hsl(145, 65%, 42%)',
+                        warning: 'hsl(0, 72%, 51%)',
+                        alert: 'hsl(38, 92%, 50%)',
+                        surface: 'hsl(210, 45%, 97%)',
+                        darkbg: '#0f172a',
+                    },
+                    fontFamily: {
+                        ar: ['Tajawal', 'sans-serif'],
+                        en: ['Inter', 'sans-serif'],
+                        tr: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(15, 78, 163, 0.08)',
+                        'glow': '0 0 40px -10px rgba(15, 78, 163, 0.15)',
+                        'chat': '0 10px 40px -10px rgba(0,0,0,0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+     
+    </style>
+<base target="_blank">
+</head>
+<body class="bg-surface text-slate-800 antialiased font-ar">
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                   <img src="logo.jpeg" 
+     alt="Tawteen 360 Logo" 
+     class="h-16 lg:h-19 w-auto object-contain rounded-xl shadow-sm border-2 border-secondary/30 p-[2px]">
+                    <div class="flex flex-col justify-center">
+                        <span class="text-[22px] lg:text-[26px] font-bold text-primary tracking-tight leading-none" data-i18n="brand">توطين 360</span>
+                        <span class="text-[12px] lg:text-[13px] text-slate-500 font-medium mt-1 tracking-wide" data-i18n="brand_slogan">نظامك المالي الشامل</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_features">المميزات</a>
+                    <a href="#modules" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_modules">الاقسام</a>
+                    <a href="#architecture" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_architecture">البنية</a>
+                    <a href="#about" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_about">عن التطبيق</a>
+                    <a href="#pricing" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_pricing">الأسعار</a>
+                    <a href="#contact" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_contact">تواصل معنا</a>
+                </div>
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="relative" id="lang-dropdown-container">
+                        <button onclick="toggleLangDropdown()" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 hover:border-primary/50 hover:bg-primary/5 transition-all text-sm font-medium text-slate-700">
+                            <i data-lucide="globe" class="w-4 h-4 text-primary"></i>
+                            <span id="current-lang-label">العربية</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                        </button>
+                        <div id="lang-dropdown" class="lang-dropdown hidden-dropdown absolute mt-2 w-40 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
+                            <button onclick="switchLanguage('ar')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
+                                <span class="w-5 text-center">🇸🇦</span> العربية
+                            </button>
+                            <button onclick="switchLanguage('en')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
+                                <span class="w-5 text-center">🇬🇧</span> English
+                            </button>
+                            <button onclick="switchLanguage('tr')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
+                                <span class="w-5 text-center">🇹🇷</span> Türkçe
+                            </button>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn-shine px-6 py-2.5 bg-primary text-white rounded-lg font-semibold text-sm shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:bg-[#0d438c] transition-all">
+                        <span data-i18n="nav_cta">ابدأ الآن</span>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleLangDropdownMobile()" class="p-2 rounded-lg border border-slate-200 text-slate-600">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                        <i data-lucide="x" class="w-6 h-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-100">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#features" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_features">المميزات</a>
+                <a href="#modules" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_modules">الاقسام</a>
+                <a href="#architecture" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_architecture">البنية</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_about">عن التطبيق</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_pricing">الأسعار</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_contact">تواصل معنا</a>
+                <div class="pt-4 border-t border-slate-200">
+                    <p class="px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="language">اللغة</p>
+                    <div class="grid grid-cols-3 gap-2 px-4">
+                        <button onclick="switchLanguage('ar'); toggleMobileMenu()" class="py-2 rounded-lg bg-primary/10 text-primary font-medium text-sm">العربية</button>
+                        <button onclick="switchLanguage('en'); toggleMobileMenu()" class="py-2 rounded-lg bg-slate-100 text-slate-600 font-medium text-sm hover:bg-slate-200">English</button>
+                        <button onclick="switchLanguage('tr'); toggleMobileMenu()" class="py-2 rounded-lg bg-slate-100 text-slate-600 font-medium text-sm hover:bg-slate-200">Türkçe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 hero-bg overflow-hidden">
+        <div class="absolute top-20 start-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 end-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            
+
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 lg:gap-16 items-center">
+                <div class="text-center lg:text-start space-y-4 sm:space-y-8 reveal visible">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/10">
+                        <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                        <span data-i18n="hero_badge">نظام ERP متكامل v3.2</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.4] lg:leading-[1.2]">
+                        <span data-i18n="hero_title_1" class="text-slate-900">نظام</span>
+                        <span class="gradient-text" data-i18n="hero_title_2">توطين 360</span><br>
+                        <span data-i18n="hero_title_3" class="text-slate-900">المتكامل</span>
+                    </h1>
+                    <p class="text-base sm:text-xl font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="hero_subtitle">
+                        حلول ذكية لإدارة أعمالك المالية والمشاريع والشحن والإنتاج في منصة سحابية واحدة آمنة وموثوقة
+                    </p>
+                    <div class="flex flex-row gap-2 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto px-2 sm:px-0">
+                        <a href="#contact" class="btn-shine flex-1 sm:flex-none px-3 py-3 sm:px-8 sm:py-4 bg-primary text-white rounded-xl font-bold text-sm sm:text-lg shadow-xl shadow-primary/30 hover:shadow-primary/40 hover:bg-[#0d438c] transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center">
+                            <span data-i18n="hero_cta_primary">ابدأ الآن مجاناً</span>
+                            <i data-lucide="rocket" class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"></i>
+                        </a>
+                        <a href="#modules" class="flex-1 sm:flex-none px-3 py-3 sm:px-8 sm:py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-bold text-sm sm:text-lg hover:border-primary/40 hover:bg-primary/5 transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center">
+                            <span data-i18n="hero_cta_secondary">اكتشف الاقسام</span>
+                        </a>
+                    </div>
+                    
+
+                    <div class="flex items-center gap-6 justify-center lg:justify-start pt-2 text-slate-500 text-[14px] lg:text-[16px] opacity-80">
+                        <div class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust1">أمان بنكي</span></div>
+                        <div class="flex items-center gap-1.5"><i data-lucide="cloud" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust2">سحابي 100%</span></div>
+                        <div class="flex items-center gap-1.5"><i data-lucide="smartphone" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust3">لكل الأجهزة</span></div>
+                    </div>
+                </div>
+                <div class="relative flex justify-center reveal visible mt-10">
+                    <div class="phone-frame w-[280px] h-[570px] sm:w-[300px] sm:h-[600px] animate-float">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen p-6 pt-12 flex flex-col gap-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center"><i data-lucide="zap" class="w-4 h-4 text-white"></i></div>
+                                <div class="text-xs font-bold text-slate-800">توطين 360</div>
+                                <div class="w-8 h-8 rounded-full bg-slate-200"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                                    <div class="text-[10px] text-slate-500 mb-1">السيولة</div>
+                                    <div class="text-sm font-bold text-success">+12.5%</div>
+                                    <div class="w-full h-1 bg-slate-100 rounded-full mt-2 overflow-hidden"><div class="h-full w-3/4 bg-success rounded-full"></div></div>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                                    <div class="text-[10px] text-slate-500 mb-1">المصروفات</div>
+                                    <div class="text-sm font-bold text-warning">-4.2%</div>
+                                    <div class="w-full h-1 bg-slate-100 rounded-full mt-2 overflow-hidden"><div class="h-full w-1/2 bg-warning rounded-full"></div></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex-1 flex flex-col">
+                                <div class="text-xs font-bold text-slate-700 mb-3">لوحة التحكم</div>
+                                <div class="flex-1 flex items-end justify-between gap-1 px-2">
+                                    <div class="w-3 bg-primary/20 rounded-t" style="height: 40%"></div>
+                                    <div class="w-3 bg-primary/30 rounded-t" style="height: 60%"></div>
+                                    <div class="w-3 bg-primary/40 rounded-t" style="height: 45%"></div>
+                                    <div class="w-3 bg-primary/50 rounded-t" style="height: 80%"></div>
+                                    <div class="w-3 bg-primary/60 rounded-t" style="height: 65%"></div>
+                                    <div class="w-3 bg-primary rounded-t" style="height: 90%"></div>
+                                    <div class="w-3 bg-primary/80 rounded-t" style="height: 75%"></div>
+                                </div>
+                                <div class="flex justify-between mt-2 text-[8px] text-slate-400"><span>يناير</span><span>فبراير</span><span>مارس</span></div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-2">
+                                <div class="aspect-square rounded-xl bg-primary/10 flex items-center justify-center"><i data-lucide="coins" class="w-5 h-5 text-primary"></i></div>
+                                <div class="aspect-square rounded-xl bg-secondary/10 flex items-center justify-center"><i data-lucide="clipboard-list" class="w-5 h-5 text-secondary"></i></div>
+                                <div class="aspect-square rounded-xl bg-success/10 flex items-center justify-center"><i data-lucide="truck" class="w-5 h-5 text-success"></i></div>
+                                <div class="aspect-square rounded-xl bg-warning/10 flex items-center justify-center"><i data-lucide="factory" class="w-5 h-5 text-warning"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-1 end-10 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2" style="animation-delay: 1s;">
+                        <div class="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-success"></i></div>
+                        <span class="text-[13px] lg:text-[14px]   text-slate-700">تحديثات مستمرة</span>
+                    </div>
+                    <div class="absolute bottom-20 -start-1 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2" style="animation-delay: 2s;">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center"><i data-lucide="trending-up" class="w-4 h-4 text-primary"></i></div>
+                        <div><div class="text-[13px] lg:text-[14px] text-slate-500">نمو الأعمال</div><div class="text-xs lg:text-[14px] font-bold text-primary">+24.8%</div></div>
+                    </div>
+                </div>
+            </div>
+			<!-- News Ticker -->
+            <div class="mt-10 lg:mb-12 bg-white/80 backdrop-blur-sm border border-slate-200/60 border-r-4 border-r-red-500 rounded-md p-3 flex items-center gap-3 shadow-sm w-full max-w-3xl mx-auto overflow-hidden relative reveal visible">
+                <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bell" class="w-4 h-4 text-primary animate-pulse"></i>
+                </div>
+                <div class="font-bold text-sm text-slate-800 flex-shrink-0 border-l border-slate-200 pl-3 ml-1" data-i18n="ticker_title">جديدنا</div>
+                <div class="relative flex-1 h-12 overflow-hidden">
+                    <div id="news-ticker" class="absolute top-0 w-full transition-transform duration-500 ease-in-out flex flex-col">
+                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">إطلاق التحديث 3.2 مع دعم كامل للفوترة الإلكترونية وتعدد اللغات.</div>
+                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">تفعيل نظام الصلاحيات المتقدم لزيادة أمان وسرية بيانات المؤسسة.</div>
+                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">إضافة قسم الإنتاج والتصنيع لحساب تكاليف المواد الخام بدقة عالية.</div>
+                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">تزامن لحظي ومباشر مع كافة الأجهزة لدعم العمليات التشغيلية السريعة.</div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const ticker = document.getElementById('news-ticker');
+                    if (ticker) {
+                        const items = ticker.children.length;
+                        let currentItem = 0;
+                        setInterval(() => {
+                            currentItem = (currentItem + 1) % items;
+                            const itemHeight = ticker.children[0].offsetHeight;
+                            ticker.style.transform = `translateY(-${currentItem * itemHeight}px)`;
+                        }, 3000);
+                    }
+                });
+            </script>
+			<!-- Subscribers & Share Widget -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-10 sm:gap-15 pt-4 mt-8 lg:mb-12">
+                        <div class="flex items-center gap-3 bg-white/50 backdrop-blur-sm px-4 py-1 rounded-2xl border border-slate-200/50 shadow-sm hover:shadow-md transition-all">
+                            <div class="flex -space-x-3 rtl:space-x-reverse">
+                                
+                                <div class="w-[50px] h-[50px] rounded-full border-2 border-white bg-primary text-white text-[15px] flex items-center justify-center font-bold shadow-sm">+300</div>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[15px] font-bold text-slate-800 leading-none">322</span>
+                                <span class="text-[11px] text-slate-500 font-medium mt-0.5" data-i18n="hero_subscribers">مؤسسة مسجلة</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="shareApp()" class="flex items-center gap-3 group cursor-pointer">
+                            <div class="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                                <i data-lucide="share-2" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex flex-col text-start">
+                                <span class="text-[15px] font-bold text-slate-800 group-hover:text-primary transition-colors" data-i18n="hero_share_title">شارك التطبيق</span>
+                                <span class="text-[11px] text-slate-500 font-medium mt-0.5" data-i18n="hero_share_subtitle">أرسله لزميلك في العمل</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <script>
+                        function shareApp() {
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: 'توطين 360',
+                                    text: 'نظامك المالي الشامل للإدارة المحاسبية والمشاريع والإنتاج.',
+                                    url: window.location.href,
+                                }).then(() => console.log('Successful share'))
+                                  .catch((error) => console.log('Error sharing', error));
+                            } else {
+                                const url = window.location.href;
+                                navigator.clipboard.writeText(url);
+                                alert('تم نسخ رابط التطبيق، يمكنك الآن إرساله لأصدقائك!');
+                            }
+                        }
+                    </script>
+        </div>
+         
+    </section>
+	
+	
+
+    <!-- ==================== PLATFORMS SECTION ==================== -->
+    <section class="py-16 bg-white relative border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
+                <h2 class="text-2xl sm:text-4xl lg:text-[34px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="platforms_title">توطين 360 في كل أجهزتك</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="platforms_subtitle">يعمل تطبيق توطين 360 على مختلف اجهزتك بكل أنواعها ، مع تزامن بيانات لحظي</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-3 sm:gap-6 stagger-children">
+    <!-- Computers (Desktop) -->
+    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/90 to-blue-900/80 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg shadow-primary/20">
+        <div class="bg-slate-900/40 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
+            <!-- Icon -->
+            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-primary group-hover:bg-primary/10 transition-all duration-500 flex-shrink-0 border border-white/5">
+                <i data-lucide="monitor" class="w-6 h-6 sm:w-10 sm:h-10"></i>
+            </div>
+            <!-- Content -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_desktop">الحواسيب</h3>
+                <span class="text-[8px] sm:text-base   text-blue-200/60 group-hover:text-primary/70 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">Windows / Mac</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Android -->
+    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-success/80 to-emerald-950 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg shadow-success/20">
+        <div class="bg-slate-900/40 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
+            <!-- Icon -->
+            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-success group-hover:bg-success/10 transition-all duration-500 flex-shrink-0 border border-white/5">
+                <i data-lucide="smartphone" class="w-6 h-6 sm:w-10 sm:h-10"></i>
+            </div>
+            <!-- Content -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_android">أجهزة الأندرويد</h3>
+                <span class="text-[8px] sm:text-base   text-emerald-200/60 group-hover:text-success/70 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">Android Phones</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS (iPhone) -->
+    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg hover:shadow-slate-500/30">
+        <div class="bg-slate-900/20 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
+            <!-- Icon -->
+            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-slate-900 group-hover:bg-slate-900/10 transition-all duration-500 flex-shrink-0 border border-white/5">
+                <i data-lucide="smartphone" class="w-6 h-6 sm:w-10 sm:h-10"></i>
+            </div>
+            <!-- Content -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_ios">أجهزة الآيفون</h3>
+                <span class="text-[8px] sm:text-base   text-slate-400 group-hover:text-slate-600 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">iOS Phones</span>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- ==================== MISSION / CONCEPT SECTION ==================== -->
+    <section class="py-10 lg:py-28 bg-surface relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="reveal visible">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-6">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span data-i18n="mission_badge">الرؤية والرسالة</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-3 sm:mb-6 leading-[1.4] lg:leading-[1.2]" data-i18n="mission_title">
+                        رقمنة العمليات المعقدة<br>في <span class="gradient-text">بيئة موحدة</span>
+                    </h2>
+                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-6" data-i18n="mission_desc1">
+                        يجمع توطين 360 بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة. مصمم ليعمل بكفاءة مطلقة على الهواتف الذكية مع دعم الوضع الليلي المريح للعين.
+                    </p>
+                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-8" data-i18n="mission_desc2">
+                        تكمن القيمة المضافة في "الترابط المعماري"؛ فالمصروف المدخل يمكن ربطه مباشرة بمشروع معين، أو شحنة، أو خط إنتاج، مما يمنح الإدارة العليا رؤية 360 درجة لجميع التكاليف والأرباح من شاشة واحدة.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <div class="w-2 h-2 rounded-full bg-primary"></div>
+                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point1">تزامن لحظي</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <div class="w-2 h-2 rounded-full bg-success"></div>
+                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point2">عمل دون اتصال PWA</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point3">تعدد العملات</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal visible">
+                    <!-- Image Placeholder Container -->
+                    <div class="img-placeholder min-h-[400px] rounded-2xl">
+                        <div class="relative z-10 text-center">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                                <i data-lucide="target" class="w-10 h-10 text-primary"></i>
+                            </div>
+                            <p class="text-primary font-bold text-lg mb-1" data-i18n="placeholder_title">صورة توضيحية</p>
+                            <p class="text-slate-500 text-sm" data-i18n="placeholder_desc">سيتم استبدالها بتصميم معبر عن الرؤية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FUNCTIONAL MODULES SECTION ==================== -->
+    <section id="modules" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                    <span data-i18n="modules_badge">الوظائف الأساسية</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="modules_title">اقسام النظام المتكاملة</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="modules_subtitle">حلول شاملة تغطي كافة الجوانب التشغيلية لشركتك</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+                <!-- Module 1: Funds -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="coins" class="w-6 h-6 text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod1_title">الصناديق والسيولة</h3>
+                            <p class="text-sm lg:text-[16px] text-primary/70  font-medium" data-i18n="mod1_subtitle">إدارة النقدية والبنوك</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>تتبع دقيق لحركات الدخول والخروج</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>نقل مرن للأموال بين الصناديق</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>تحكم متقدم بالعملات المتعددة</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 2: Ledger -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
+                            <i data-lucide="file-text" class="w-6 h-6 text-secondary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod2_title">دفتر الأستاذ</h3>
+                            <p class="text-sm lg:text-[16px] text-secondary/70 font-medium" data-i18n="mod2_subtitle">القيود المحاسبية</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
+                                <span>مراقبة العمليات الدائنة والمدينة</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
+                                <span>حساب آلي للأرصدة التراكمية</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
+                                <span>تسويات محاسبية سريعة وموثوقة</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 3: Business -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-6 h-6 text-success"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod3_title">الأعمال</h3>
+                            <p class="text-sm lg:text-[16px] text-success/70 font-medium" data-i18n="mod3_subtitle">المصروفات والإيرادات</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                                <span>تسجيل وتصنيف المصروفات والإيرادات</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                                <span>الربط المباشر مع المشاريع والإنتاج</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
+                                <span>تحليل دقيق للربحية والاستهلاك</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 4: Projects -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
+                            <i data-lucide="clipboard-list" class="w-6 h-6 text-warning"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod4_title">المشاريع</h3>
+                            <p class="text-sm lg:text-[16px] text-warning/70 font-medium" data-i18n="mod4_subtitle">التكاليف والأرباح</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
+                                <span>حساب دقيق لتكاليف وأرباح المشاريع</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
+                                <span>تتبع حي لنسب الإنجاز</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
+                                <span>إدارة متكاملة للدفعات والمستخلصات</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 5: Shipping -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-alert/10 flex items-center justify-center">
+                            <i data-lucide="truck" class="w-6 h-6 text-alert"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod5_title">الشحن والحاويات</h3>
+                            <p class="text-sm lg:text-[16px] text-alert/70  font-medium" data-i18n="mod5_subtitle">اللوجستيات والجمارك</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
+                                <span>تتبع شامل للحاويات ومسار الشحنات</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
+                                <span>إدارة شفافة للمصاريف اللوجستية</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
+                                <span>حصر تفصيلي لتكاليف التخليص الجمركي</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 6: Production -->
+                <div class="module-card reveal visible">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="factory" class="w-6 h-6 text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod6_title">الإنتاج والتصنيع</h3>
+                            <p class="text-sm lg:text-[16px] text-primary/70  font-medium" data-i18n="mod6_subtitle">خطوط الإنتاج</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
+                        <ul class="space-y-2.5 text-start relative z-10">
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>احتساب آلي لتكاليف المواد الخام</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>مراقبة لحظية لخطوط الإنتاج</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+                                <span>تسعير دقيق للمبيعات والمنتجات النهائية</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== APP ARCHITECTURE SECTION ==================== -->
+    <section id="architecture" class="py-12 sm:py-20 lg:py-28 bg-surface relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-16 reveal visible">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success text-sm font-semibold mb-4">
+                    <i data-lucide="server" class="w-4 h-4"></i>
+                    <span data-i18n="arch_badge">البنية التقنية</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="arch_title">هيكلية التطبيق</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="arch_subtitle">نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط شركتك</p>
+            </div>
+
+            <div class="grid gap-8 lg:gap-12 items-start">
+                <!-- Architecture Slider -->
+                <div class="reveal visible w-full">
+                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-soft relative overflow-hidden flex flex-col items-center">
+                        <!-- Dynamic Title and Description -->
+                        <div class="text-center mb-1 h-20 w-full">
+                            <h3 id="arch-slider-title" class="text-[20px] lg:text-[31px] font-medium text-secondary/90  mb-1 lg:mb-6 transition-opacity duration-300">الصناديق والسيولة</h3>
+                            <p id="arch-slider-desc" class="text-slate-600 text-sm lg:text-[20px] transition-opacity duration-300">إدارة النقدية والبنوك وتتبع حركات الدخول والخروج</p>
+                        </div>
+
+                        <!-- Frames Container -->
+                        <div class="relative flex flex-col items-center justify-center w-full max-w-6xl mx-auto gap-8 lg:gap-16 mt-4">
+                            
+                            <!-- Top Row: Desktop Frame -->
+                            <div class="relative w-full max-w-5xl mx-auto flex justify-center z-0">
+                                <!-- PNG Desktop Frame -->
+                                <img src="img/laptop.png" class="relative z-10 w-full h-auto drop-shadow-2xl pointer-events-none" alt="Desktop Frame">
+                                <!-- Content inside Desktop -->
+                                <!-- Tuned percentages: adjust these if the screen doesn't fit the frame perfectly -->
+                                <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 8%; left: 11%; width: 78%; height: 78%;">
+                                    <img id="arch-slider-desktop-img" src="img/2-d.png" alt="Desktop Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
+                                </div>
+                            </div>
+
+                            <!-- Bottom Row: Tablet (Right) & Phone (Left) in RTL -->
+                            <div class="flex flex-row justify-center items-center gap-6 sm:gap-16 w-full mx-auto z-10">
+                                <!-- Tablet Frame (Right in RTL because it's the first element) -->
+                                <div class="relative h-[250px] sm:h-[450px] lg:h-[600px] flex-shrink-0">
+                                    <img src="img/Tablet.png" class="relative z-10 h-full w-auto drop-shadow-2xl pointer-events-none" alt="Tablet Frame">
+                                    <!-- Tablet Screen -->
+                                    <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 8%; left: 6%; width: 88%; height: 84%;">
+                                        <img id="arch-slider-tablet-img" src="img/2-t.png" alt="Tablet Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
+                                    </div>
+                                </div>
+                                
+                                <div class="relative h-[250px] sm:h-[450px] lg:h-[600px] flex-shrink-0">
+                                    <img src="img/phone.png" class="relative z-10 h-full w-auto   pointer-events-none" alt="Mobile Frame">
+                                    <!-- Mobile Screen -->
+                                    <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 2%; left: 4%; width: 92%; height: 96%;">
+                                        <img id="arch-slider-mobile-img" src="img/2-m.png" alt="Mobile Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dots Indicators -->
+                        <div class="flex justify-center gap-2 mt-8 z-20" id="arch-slider-dots">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Script -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const slides = [
+                            { title: 'الصناديق والسيولة', desc: 'إدارة النقدية والبنوك وتتبع حركات الدخول والخروج', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
+                            { title: 'دفتر الأستاذ', desc: 'تتبع العمليات الدائنة والمدينة وإجراء التسويات المحاسبية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
+                            { title: 'إدارة الأعمال', desc: 'تسجيل المصروفات والإيرادات المستقلة والمباشرة', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
+                            { title: 'إدارة المشاريع', desc: 'حساب تكاليف المشاريع وأرباحها وتتبع نسب الإنجاز', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
+                            { title: 'الشحن والخدمات', desc: 'تتبع الحاويات والشحنات والمصاريف اللوجستية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
+                            { title: 'الإنتاج والتصنيع', desc: 'مراقبة خطوط الإنتاج والعمليات التصنيعية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' }
+                        ];
+
+                        let currentIndex = 0;
+                        const titleEl = document.getElementById('arch-slider-title');
+                        const descEl = document.getElementById('arch-slider-desc');
+                        const imgDEl = document.getElementById('arch-slider-desktop-img');
+                        const imgTEl = document.getElementById('arch-slider-tablet-img');
+                        const imgMEl = document.getElementById('arch-slider-mobile-img');
+                        const dotsContainer = document.getElementById('arch-slider-dots');
+
+                        // Create dots
+                        slides.forEach((_, idx) => {
+                            const dot = document.createElement('button');
+                            dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-primary w-4' : 'bg-slate-300'}`;
+                            dot.onclick = () => goToSlide(idx);
+                            dotsContainer.appendChild(dot);
+                        });
+
+                        function updateDots() {
+                            Array.from(dotsContainer.children).forEach((dot, idx) => {
+                                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-primary w-4' : 'bg-slate-300 hover:bg-slate-400'}`;
+                            });
+                        }
+
+                        function goToSlide(idx) {
+                            currentIndex = idx;
+                            const slide = slides[currentIndex];
+                            
+                            // Fade out
+                            titleEl.style.opacity = 0;
+                            descEl.style.opacity = 0;
+                            imgDEl.style.opacity = 0;
+                            imgTEl.style.opacity = 0;
+                            imgMEl.style.opacity = 0;
+
+                            setTimeout(() => {
+                                titleEl.textContent = slide.title;
+                                descEl.textContent = slide.desc;
+                                imgDEl.src = slide.imgD;
+                                imgTEl.src = slide.imgT;
+                                imgMEl.src = slide.imgM;
+                                updateDots();
+                                
+                                // Fade in
+                                titleEl.style.opacity = 1;
+                                descEl.style.opacity = 1;
+                                imgDEl.style.opacity = 1;
+                                imgTEl.style.opacity = 1;
+                                imgMEl.style.opacity = 1;
+                            }, 300);
+                        }
+
+                        // Auto play
+                        setInterval(() => {
+                            goToSlide((currentIndex + 1) % slides.length);
+                        }, 3000);
+                    });
+                </script>
+
+                <!-- Architecture Description with Image Placeholders -->
+                <div class="space-y-8 reveal visible">
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="arch_details_title">بنية برمجية متقدمة</h3>
+                        <p class="text-slate-600 leading-relaxed mb-6" data-i18n="arch_details_desc">يعتمد التطبيق على هيكلية برمجية تفصل النظام إلى وحدات متكاملة (Modules)، كل وحدة تعمل باستقلالية كاملة مع إمكانية الربط الذكي بينها.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="img-placeholder h-40 rounded-xl">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="cpu" class="w-8 h-8 text-primary/40 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_arch1">Supabase Backend</span>
+                            </div>
+                        </div>
+                        <div class="img-placeholder h-40 rounded-xl">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="puzzle" class="w-8 h-8 text-secondary/40 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_arch2">RBAC Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     
+                    <div class="bg-white rounded-xl p-6 border border-slate-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+                                <i data-lucide="smartphone" class="w-5 h-5 text-secondary"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900" data-i18n="arch_feature2">تصميم متجاوب ومريح</h4>
+                        </div>
+                        <p class="text-sm text-slate-600" data-i18n="arch_feature2_desc">واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي المريح للعين.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COMPETITIVE ADVANTAGES ==================== -->
+    <section id="about" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
+                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="why_title">لماذا توطين 360؟</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="why_subtitle">نقاط القوة التنافسية و قيم التطبيق المضافة </p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-8 stagger-children">
+                <!-- Card 1: Sync & Security -->
+                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-success/20 hover:shadow-glow transition-all duration-500">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-success/10 flex items-center justify-center group-hover:bg-success/20 transition-colors">
+                        <i data-lucide="cloud" class="w-6 h-6 sm:w-10 sm:h-10 text-success"></i>
+                    </div>
+                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why3_title">تزامن لحظي وأمان</h3>
+                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why3_desc">نظام سحابي متطور يضمن تزامن البيانات في الوقت الفعلي لجميع أعضاء الفريق، مع نظام صلاحيات دقيق يضمن أمان وخصوصية المعلومات.</p>
+                </div>
+                <!-- Card 2: Multi-currency -->
+                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-alert/20 hover:shadow-glow transition-all duration-500">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-alert/10 flex items-center justify-center group-hover:bg-alert/20 transition-colors">
+                        <i data-lucide="coins" class="w-6 h-6 sm:w-10 sm:h-10 text-alert"></i>
+                    </div>
+                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why4_title">تعدد العملات الذكي</h3>
+                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why4_desc">نظام متكامل لتتبع وإدارة أسعار الصرف والفروقات المالية بين العملات المختلفة بذكاء.</p>
+                </div>
+                <!-- Card 3: Three Languages -->
+                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-primary/20 hover:shadow-glow transition-all duration-500">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <i data-lucide="globe" class="w-6 h-6 sm:w-10 sm:h-10 text-primary"></i>
+                    </div>
+                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why5_title">ثلاث لغات</h3>
+                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why5_desc">يدعم التطبيق حالياً اللغات العربية والإنجليزية والتركية بشكل كامل، مع خطة للتوسع ودعم لغات إضافية قريباً لتلبية احتياجاتك المتزايدة.</p>
+                </div>
+                <!-- Card 4: Flexible Architecture -->
+                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-secondary/20 hover:shadow-glow transition-all duration-500">
+                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                        <i data-lucide="blocks" class="w-6 h-6 sm:w-10 sm:h-10 text-secondary"></i>
+                    </div>
+                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why6_title">بنية وحدات مرنة</h3>
+                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why6_desc">نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط الشركة Scalability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DASHBOARD PREVIEW / REPORTS SECTION ==================== -->
+    <section class="py-12 sm:py-20 lg:py-28 bg-surface relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="order-2 lg:order-1 reveal visible">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="img-placeholder h-48 rounded-xl">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="pie-chart" class="w-10 h-10 text-primary/30 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report1">تقرير الأداء المالي</span>
+                            </div>
+                        </div>
+                        <div class="img-placeholder h-48 rounded-xl mt-8">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="bar-chart" class="w-10 h-10 text-secondary/30 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report2">تحليل المشاريع</span>
+                            </div>
+                        </div>
+                        <div class="img-placeholder h-48 rounded-xl -mt-4">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="receipt" class="w-10 h-10 text-success/30 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report3">فاتورة تجارية</span>
+                            </div>
+                        </div>
+                        <div class="img-placeholder h-48 rounded-xl mt-4">
+                            <div class="relative z-10 text-center">
+                                <i data-lucide="monitor" class="w-10 h-10 text-warning/30 mx-auto mb-2"></i>
+                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report4">لوحة التحكم</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 reveal visible">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-warning/10 text-warning text-sm font-semibold mb-6">
+                        <i data-lucide="bar-chart" class="w-4 h-4"></i>
+                        <span data-i18n="reports_badge">التقارير والمستندات</span>
+                    </div>
+                   <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-3 sm:mb-6 leading-[1.4] lg:leading-[1.1] pt-2" data-i18n="reports_title">
+    تقارير شاملة<br>
+    <span class="gradient-text inline-block mt-1 sm:mt-2">ومستندات احترافية</span>
+</h2>
+                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-6" data-i18n="reports_desc">توليد فواتير وعروض أسعار احترافية، استخراج تقارير الأداء والموازنات، واستيراد/تصدير البيانات لدعم المحاسبة الخارجية.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
+                            </div>
+                            <span class="text-slate-700  
+" data-i18n="reports_point1">تقارير الأداء المالي لحظية</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
+                            </div>
+                            <span class="text-slate-700  
+" data-i18n="reports_point2">فواتير وعروض أسعار احترافية</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
+                            </div>
+                            <span class="text-slate-700  
+" data-i18n="reports_point3">استيراد وتصدير البيانات</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
+                            </div>
+                            <span class="text-slate-700  
+" data-i18n="reports_point4">تلخيص النشاط المالي والتشغيلي</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW TO USE ==================== -->
+    <section id="how-to-use" class="py-12 sm:py-20 bg-slate-50 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4 sm:mb-6">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i>
+                    <span data-i18n="how_to_badge">دليل الاستخدام</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="how_to_title">كيف تستخدم التطبيق</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="how_to_subtitle">شاهد هذا الفيديو التعريفي لتتعرف على واجهة التطبيق وكيفية البدء في إدارة أعمالك بكل سهولة.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto reveal visible">
+                <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden   border-4 border-white group">
+                    <div class="absolute inset-0 bg-slate-900/10 pointer-events-none group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <div class="relative w-full pb-[56.25%] bg-slate-100">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/zPwP8-0P-dI" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-30 blur-2xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA BANNER ==================== -->
+    <section class="py-16 bg-primary relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')]""></div>
+        <div class="absolute top-0 start-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 end-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative reveal visible">
+            <h2 class="text-2xl sm:text-4xl lg:text-[34px] font-bold text-white mb-2 sm:mb-4" data-i18n="cta_title">جهز عملك للمستقبل</h2>
+            <p class="text-blue-100 text-base sm:text-lg font-medium mb-5 max-w-2xl mx-auto" data-i18n="cta_subtitle">انضم إلى المئات الشركات التي تثق بتوطين 360 لإدارة مواردها. ابدأ رحلتك نحو التحول الرقمي اليوم.</p>
+           <!-- <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white text-primary rounded-xl font-bold text-base sm:text-lg shadow-xl hover:bg-blue-50 transition-all">
+                <span data-i18n="cta_button">تواصل معنا</span>
+                <i data-lucide="play-circle" class="w-5 h-5"></i>
+            </a>-->
+        </div>
+    </section>
+
+    <!-- ==================== PRICING SECTION ==================== -->
+    <section id="pricing" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+                    <i data-lucide="tag" class="w-4 h-4"></i>
+                    <span data-i18n="pricing_badge">خطط الاشتراك</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="pricing_title">اختر الخطة المناسبة لنمو أعمالك</h2>
+                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="pricing_subtitle">حلول مرنة تناسب الشركات الناشئة والمؤسسات الكبرى</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 sm:gap-8 max-w-5xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all reveal visible">
+                    <div class="mb-4 sm:mb-8 text-start">
+                        <h3 class="text-sm sm:text-xl font-bold text-slate-900 mb-1 sm:mb-2" data-i18n="free_title">الخطة المجانية</h3>
+                        <p class="text-[10px] sm:text-sm text-slate-500 mb-3 sm:mb-6 leading-tight" data-i18n="free_desc">للأفراد والشركات الناشئة</p>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl sm:text-4xl font-extrabold text-slate-900">0</span>
+                            <span class="text-[10px] sm:text-base text-slate-500 font-medium" data-i18n="currency_month">ريال / شهر</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 sm:space-y-4 mb-4 sm:mb-8 text-start">
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-600 text-[11px] sm:text-sm">
+                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-success flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="free_feat1">إدارة الصناديق والسيولة</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-600 text-[11px] sm:text-sm">
+                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-success flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="free_feat2">دفتر الأستاذ والقيود</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-400 text-[11px] sm:text-sm opacity-60 line-through">
+                            <i data-lucide="x" class="w-3 h-3 sm:w-4 sm:h-4 text-slate-300 flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="free_feat3">الشحن والحاويات</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-2 sm:py-4 px-2 sm:px-6 text-center bg-slate-100 text-slate-700 rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-base hover:bg-slate-200 transition-colors" data-i18n="free_btn">ابدأ مجاناً</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="relative bg-slate-900 rounded-2xl sm:rounded-3xl p-3 sm:p-8 border-2 border-primary shadow-2xl reveal visible z-10">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-0.5 sm:px-4 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider whitespace-nowrap" data-i18n="pro_badge">الأكثر طلباً</div>
+                    <div class="mb-4 sm:mb-8 text-start">
+                        <h3 class="text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2" data-i18n="pro_title">خطة برو (Pro)</h3>
+                        <p class="text-[10px] sm:text-sm text-slate-400 mb-3 sm:mb-6 leading-tight" data-i18n="pro_desc">للمؤسسات والتحليل الكامل</p>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl sm:text-4xl font-extrabold text-white">30$</span>
+                            <span class="text-[10px] sm:text-base text-slate-400 font-medium" data-i18n="currency_year">سنوياً</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 sm:space-y-4 mb-4 sm:mb-8 text-start">
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
+                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="pro_feat1">كل مميزات المجانية</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
+                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="pro_feat2">الشحن والحاويات</span>
+                        </li>
+                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
+                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
+                            <span data-i18n="pro_feat3">الإنتاج والمواد الخام</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-2 sm:py-4 px-2 sm:px-6 text-center bg-primary text-white rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-base hover:bg-[#0d438c] shadow-lg shadow-primary/30 transition-all" data-i18n="pro_btn">اطلب سعراً</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 pt-16 pb-20 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-5 p-5">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-2 sm:mb-4">
+                        <img src="logo.jpeg" alt="Tawteen 360" class="w-10 h-10 rounded-xl object-contain shadow-sm">
+                        <span class="text-xl font-bold text-white">توطين 360</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="footer_desc">نظام متكامل لإدارة المؤسسات يجمع بين القوة والبساطة لمساعدتك على تنمية عملك.</p>
+                     
+                </div>
+               <!-- <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer_links">وصول سريع</h4>
+                    <ul class="space-y-2 sm:space-y-3 text-sm">
+                        <li>
+                            <a href="#features" class="group flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
+                                <span data-i18n="nav_features">المميزات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#modules" class="group flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
+                                <span data-i18n="nav_modules">الاقسام</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#architecture" class="group flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
+                                <span data-i18n="nav_architecture">البنية</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="group flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
+                                <span data-i18n="nav_about">عن التطبيق</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>-->
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer_contact">تواصل معنا</h4>
+                    <ul class="space-y-4 sm:space-y-3 text-sm">
+                        <li>
+                            <a href="mailto:info@tawteen360.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                                <span dir="ltr">info@tawteen360.com</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+966500000000" class="flex items-center gap-2 hover:text-white transition-colors">
+                                <i data-lucide="phone" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                                <span dir="ltr">+966 50 000 0000</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/966500000000" class="flex items-center gap-2 hover:text-white transition-colors" target="_blank">
+                                <i data-lucide="message-circle" class="w-4 h-4 text-primary flex-shrink-0"></i>
+                                <span dir="ltr" data-i18n="footer_whatsapp">واتساب (+966 50 000 0000)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer_follow">تابعنا</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-all" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-black hover:text-white transition-all" aria-label="X (Twitter)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.294 19.497h2.039L6.486 3.24H4.298L17.607 20.65z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#000000] hover:text-white transition-all" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#FF0000] hover:text-white transition-all" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white transition-all" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441c.795 0 1.439-.645 1.439-1.441s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500" data-i18n="footer_rights">جميع الحقوق محفوظة © 2026 توطين 360</p>
+                <div class="flex gap-6 text-sm text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_privacy">سياسة الخصوصية</a>
+                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_terms">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== AI CHATBOT WIDGET ==================== -->
+    <div class="chat-widget">
+        <!-- Chat Window -->
+        <div id="chat-window" class="chat-window closed mb-4">
+            <!-- Header -->
+            <div class="bg-primary p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-sm" data-i18n="chat_title">مساعد توطين 360</h3>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                            <span class="text-blue-100 text-xs" data-i18n="chat_status">متصل الآن</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-white"></i>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div id="chat-messages" class="chat-messages bg-slate-50">
+                <div class="chat-bubble bot" data-i18n="chat_welcome">
+                    مرحباً! أنا مساعد توطين 360 الذكي. يمكنك سؤالي عن أي شيء يتعلق بالتطبيق، الاقسام، المميزات، أو كيفية البدء. كيف يمكنني مساعدتك اليوم؟
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="px-4 py-2 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto">
+                <button onclick="sendQuickMessage('ما هو توطين 360؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick1">ما هو توطين 360؟</button>
+                <button onclick="sendQuickMessage('ما هي الاقسام المتاحة؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick2">الاقسام المتاحة</button>
+                <button onclick="sendQuickMessage('كيف أبدأ؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick3">كيف أبدأ؟</button>
+            </div>
+
+            <!-- Input -->
+            <div class="chat-input-area flex items-center gap-2">
+                <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." class="flex-1 px-4 py-2.5 bg-slate-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 text-slate-800" data-i18n-placeholder="chat_placeholder" onkeypress="if(event.key==='Enter')sendMessage()">
+                <button onclick="sendMessage()" class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:bg-[#0d438c] transition-colors flex-shrink-0">
+                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+<button onclick="toggleChat()" id="chat-toggle" class="chat-toggle-btn lg:text-[16px]">
+   
+    <i data-lucide="bot" class="w-[18px] h-[18px] lg:w-6 lg:h-6"></i>
+    
+     
+    <i data-lucide="chevron-down" class="w-[18px] h-[18px] lg:w-6 lg:h-6 hidden"></i>
+    
+    <span>إسألني عن التطبيق</span>
+</button>
+
+<!-- ==================== DOWNLOAD APP BUTTON ==================== -->
+<a href="#download" class="download-toggle-btn lg:text-[16px]">
+    
+   
+    <span data-i18n="download_app">حمل التطبيق</span>
+	 <i data-lucide="download" class="w-[16px] h-[16px] lg:w-6 lg:h-6"></i>
+</a>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== TRANSLATIONS ====================
+        const translations = {
+            ar: {
+                dir: 'rtl', font: 'font-ar',
+                brand: 'توطين 360', brand_slogan: 'نظامك المالي الشامل',
+                nav_features: 'المميزات', nav_modules: 'الاقسام', nav_architecture: 'البنية', nav_about: 'عن التطبيق', nav_contact: 'تواصل معنا', nav_cta: 'ابدأ الآن',
+                language: 'اللغة',
+                hero_badge: 'نظام ERP متكامل v3.2',
+                hero_title_1: 'نظام', hero_title_2: 'توطين 360', hero_title_3: 'المتكامل',
+                hero_subtitle: 'حلول ذكية لإدارة أعمالك المالية والمشاريع والشحن والإنتاج في منصة سحابية واحدة آمنة وموثوقة',
+                hero_cta_primary: 'ابدأ الآن مجاناً', hero_cta_secondary: 'اكتشف الاقسام',
+                hero_trust1: 'أمان بنكي', hero_trust2: 'سحابي 100%', hero_trust3: 'PWA',
+
+                platforms_title: 'توطين 360 في كل أجهزتك',
+                platforms_subtitle: 'يعمل تطبيق توطين 360 على مختلف اجهزتك بكل أنواعها ، مع تزامن بيانات لحظي',
+                platform_desktop: 'الحواسيب',
+                platform_android: 'أجهزة الأندرويد',
+                platform_ios: 'أجهزة الآيفون',
+
+                mission_badge: 'الرؤية والرسالة',
+                mission_title: 'رقمنة العمليات المعقدة\nفي بيئة موحدة',
+                mission_desc1: 'يجمع توطين 360 بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة. مصمم ليعمل بكفاءة مطلقة على الهواتف الذكية مع دعم الوضع الليلي المريح للعين.',
+                mission_desc2: 'تكمن القيمة المضافة في "الترابط المعماري"؛ فالمصروف المدخل يمكن ربطه مباشرة بمشروع معين، أو شحنة، أو خط إنتاج، مما يمنح الإدارة العليا رؤية 360 درجة لجميع التكاليف والأرباح من شاشة واحدة.',
+                mission_point1: 'تزامن لحظي', mission_point2: 'عمل دون اتصال PWA', mission_point3: 'تعدد العملات',
+                placeholder_title: 'صورة توضيحية', placeholder_desc: 'سيتم استبدالها بتصميم معبر عن الرؤية',
+
+                modules_badge: 'الوظائف الأساسية',
+                modules_title: 'وحدات النظام المتكاملة',
+                modules_subtitle: 'حلول شاملة تغطي كافة الجوانب التشغيلية لشركتك',
+                mod1_title: 'الصناديق والسيولة', mod1_subtitle: 'إدارة النقدية والبنوك',
+                mod1_desc: 'تتبع حركات الدخول والخروج ونقل الأموال بين الصناديق المتعددة والتحكم بالعملات بسهولة وأمان.',
+                mod2_title: 'دفتر الأستاذ', mod2_subtitle: 'القيود المحاسبية',
+                mod2_desc: 'تتبع العمليات الدائنة والمدينة، وحساب الأرصدة التراكمية للعملاء والموردين، وإجراء التسويات المحاسبية.',
+                mod3_title: 'الأعمال', mod3_subtitle: 'المصروفات والإيرادات',
+                mod3_desc: 'تسجيل المصروفات والإيرادات المباشرة المستقلة مع إمكانية ربطها بالمشاريع أو خطوط الإنتاج.',
+                mod4_title: 'المشاريع', mod4_subtitle: 'التكاليف والأرباح',
+                mod4_desc: 'حساب تكاليف المشاريع، أرباحها، وتتبع نسب الإنجاز والدفعات المرتبطة بكل مشروع على حدة.',
+                mod5_title: 'الشحن والحاويات', mod5_subtitle: 'اللوجستيات والجمارك',
+                mod5_desc: 'تتبع الحاويات، الشحنات، المصاريف اللوجستية وتكاليف التخليص الجمركي بكل دقة وشفافية.',
+                mod6_title: 'الإنتاج والتصنيع', mod6_subtitle: 'خطوط الإنتاج',
+                mod6_desc: 'حساب تكاليف المواد الخام والمبيعات، ومراقبة خطوط الإنتاج والعمليات التصنيعية لحظياً.',
+                placeholder_module: 'صورة القسم',
+
+                arch_badge: 'البنية التقنية',
+                arch_title: 'هيكلية التطبيق المعيارية',
+                arch_subtitle: 'نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط شركتك',
+                arch_dashboard: 'لوحة القيادة الرئيسية',
+                arch_funds: 'الصناديق', arch_accounts: 'الحسابات',
+                arch_business: 'الأعمال', arch_projects: 'المشاريع',
+                arch_shipping: 'الشحن', arch_production: 'الإنتاج',
+                arch_reports: 'التقارير', arch_documents: 'المستندات التجارية',
+                arch_details_title: 'بنية برمجية متقدمة',
+                arch_details_desc: 'يعتمد التطبيق على هيكلية برمجية تفصل النظام إلى وحدات متكاملة (Modules)، كل وحدة تعمل باستقلالية كاملة مع إمكانية الربط الذكي بينها.',
+                arch_feature1: 'تزامن لحظي وأمان سحابي',
+                arch_feature1_desc: 'مبني على بنية Supabase السحابية لضمان تزامن البيانات في الوقت الفعلي بين فريق العمل.',
+                arch_feature2: 'تصميم متجاوب ومريح',
+                arch_feature2_desc: 'واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي المريح للعين.',
+                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Security',
+
+                why_title: 'لماذا توطين 360؟',
+                why_subtitle: 'نقاط القوة التنافسية القابلة للتسويق',
+                why1_title: 'تصميم عصري متجاوب',
+                why1_desc: 'واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي (Dark Mode) المريح للعين.',
+                why2_title: 'تطبيق ويب تقدمي PWA',
+                why2_desc: 'إمكانية تحميل التطبيق مباشرة على الهواتف والأجهزة اللوحية وتصفحه بتجربة التطبيقات الأصلية Native-like.',
+                why3_title: 'تزامن لحظي وأمان',
+                why3_desc: 'مبني على بنية Supabase السحابية لضمان تزامن البيانات في الوقت الفعلي مع نظام صلاحيات صارم مبني على الأدوار RBAC.',
+                why4_title: 'تعدد العملات الذكي',
+                why4_desc: 'نظام متكامل لتتبع وإدارة أسعار الصرف والفروقات المالية بين العملات المختلفة بذكاء.',
+                why5_title: 'تجربة عربية أصيلة RTL',
+                why5_desc: 'تصميم مبني من الصفر ليدعم الواجهات العربية من اليمين لليسار بخطوط وتنسيقات مناسبة للمستخدم العربي.',
+                why6_title: 'بنية وحدات مرنة',
+                why6_desc: 'نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط الشركة Scalability.',
+
+                how_to_badge: 'دليل الاستخدام', how_to_title: 'كيف تستخدم التطبيق', how_to_subtitle: 'شاهد هذا الفيديو التعريفي لتتعرف على واجهة التطبيق وكيفية البدء في إدارة أعمالك بكل سهولة.',
+                reports_badge: 'التقارير والمستندات',
+                reports_title: 'تقارير شاملة
+ومستندات احترافية',
+                reports_desc: 'توليد فواتير وعروض أسعار احترافية، استخراج تقارير الأداء والموازنات، واستيراد/تصدير البيانات لدعم المحاسبة الخارجية.',
+                reports_point1: 'تقارير الأداء المالي لحظية',
+                reports_point2: 'فواتير وعروض أسعار احترافية',
+                reports_point3: 'استيراد وتصدير البيانات',
+                reports_point4: 'تلخيص النشاط المالي والتشغيلي',
+                placeholder_report1: 'تقرير الأداء المالي', placeholder_report2: 'تحليل المشاريع',
+                placeholder_report3: 'فاتورة تجارية', placeholder_report4: 'لوحة التحكم',
+
+                cta_title: 'جهز عملك للمستقبل',
+                cta_subtitle: 'انضم إلى آلاف الشركات التي تثق بتوطين 360 لإدارة مواردها. ابدأ رحلتك نحو التحول الرقمي اليوم.',
+                cta_button: 'تواصل معنا',
+
+                footer_desc: 'نظام متكامل لإدارة المؤسسات يجمع بين القوة والبساطة لمساعدتك على تنمية عملك.',
+                footer_links: 'وصول سريع',
+                footer_contact: 'تواصل معنا',
+                footer_address: 'الرياض، المملكة العربية السعودية',
+                footer_newsletter: 'النشرة البريدية',
+                footer_newsletter_desc: 'اشترك للحصول على آخر الأخبار والتحديثات',
+                footer_rights: 'جميع الحقوق محفوظة © 2026 توطين 360',
+                footer_privacy: 'سياسة الخصوصية',
+                footer_terms: 'شروط الاستخدام',
+
+                chat_title: 'مساعد توطين 360',
+                chat_status: 'متصل الآن',
+                chat_welcome: 'مرحباً! أنا مساعد توطين 360 الذكي. يمكنك سؤالي عن أي شيء يتعلق بالتطبيق، الاقسام، المميزات، أو كيفية البدء. كيف يمكنني مساعدتك اليوم؟',
+                chat_placeholder: 'اكتب رسالتك هنا...',
+                chat_quick1: 'ما هو توطين 360؟',
+                chat_quick2: 'الاقسام المتاحة',
+                chat_quick3: 'كيف أبدأ؟'
+            },
+            en: {
+                dir: 'ltr', font: 'font-en',
+                brand: 'Tawteen 360', brand_slogan: 'Your Complete Financial System',
+                nav_features: 'Features', nav_modules: 'Modules', nav_architecture: 'Architecture', nav_about: 'About', nav_contact: 'Contact', nav_cta: 'Get Started',
+                language: 'Language',
+                hero_badge: 'Integrated ERP System v3.2',
+                hero_title_1: '', hero_title_2: 'Tawteen 360', hero_title_3: 'Complete System',
+                hero_subtitle: 'Smart solutions for managing your financials, projects, shipping, and production on one secure, reliable cloud platform.',
+                hero_cta_primary: 'Start Free Today', hero_cta_secondary: 'Explore Modules',
+                hero_trust1: 'Bank-Grade Security', hero_trust2: '100% Cloud', hero_trust3: 'PWA',
+
+                platforms_title: 'Tawteen 360 on All Your Devices',
+                platforms_subtitle: 'Tawteen 360 works on all your devices with real-time data synchronization',
+                platform_desktop: 'Computers',
+                platform_android: 'Android Devices',
+                platform_ios: 'iOS Devices',
+
+                mission_badge: 'Vision & Mission',
+                mission_title: 'Digitizing Complex Operations
+in a Unified Environment',
+                mission_desc1: 'Tawteen 360 combines financial management, accounting, project management, shipping, and production in one cloud platform. Designed to work with absolute efficiency on smartphones with eye-comforting Dark Mode support.',
+                mission_desc2: 'The added value lies in the "Architectural Interconnection"; an expense entry can be directly linked to a specific project, shipment, or production line, giving management a 360-degree view of all costs and profits from a single screen.',
+                mission_point1: 'Real-time Sync', mission_point2: 'Offline PWA', mission_point3: 'Multi-Currency',
+                placeholder_title: 'Illustration Image', placeholder_desc: 'Will be replaced with a meaningful design',
+
+                modules_badge: 'Core Functions',
+                modules_title: 'Integrated System Modules',
+                modules_subtitle: 'Comprehensive solutions covering all operational aspects of your company',
+                mod1_title: 'Funds & Liquidity', mod1_subtitle: 'Cash & Bank Management',
+                mod1_desc: 'Track inflows and outflows and transfer funds between multiple funds and currencies with ease and security.',
+                mod2_title: 'General Ledger', mod2_subtitle: 'Accounting Entries',
+                mod2_desc: 'Track credit and debit operations, calculate cumulative balances for customers and suppliers, and perform accounting reconciliations.',
+                mod3_title: 'Business', mod3_subtitle: 'Expenses & Revenue',
+                mod3_desc: 'Record direct independent expenses and revenues with the ability to link them to projects or production lines.',
+                mod4_title: 'Projects', mod4_subtitle: 'Costs & Profits',
+                mod4_desc: 'Calculate project costs, profits, and track completion percentages and associated payments for each project.',
+                mod5_title: 'Shipping & Containers', mod5_subtitle: 'Logistics & Customs',
+                mod5_desc: 'Track containers, shipments, logistics expenses and customs clearance costs with precision and transparency.',
+                mod6_title: 'Production & Manufacturing', mod6_subtitle: 'Production Lines',
+                mod6_desc: 'Calculate raw material costs and sales, and monitor production lines and manufacturing operations in real-time.',
+                placeholder_module: 'Module Image',
+
+                arch_badge: 'Technical Architecture',
+                arch_title: 'Modular Application Structure',
+                arch_subtitle: 'A customizable system that allows enabling or hiding specific modules to fit your company size and activity type',
+                arch_dashboard: 'Main Dashboard',
+                arch_funds: 'Funds', arch_accounts: 'Accounts',
+                arch_business: 'Business', arch_projects: 'Projects',
+                arch_shipping: 'Shipping', arch_production: 'Production',
+                arch_reports: 'Reports', arch_documents: 'Commercial Documents',
+                arch_details_title: 'Advanced Software Architecture',
+                arch_details_desc: 'The application relies on a software architecture that divides the system into integrated Modules, each operating with complete independence while enabling smart interconnection between them.',
+                arch_feature1: 'Real-time Sync & Cloud Security',
+                arch_feature1_desc: 'Built on Supabase cloud architecture to ensure real-time data synchronization across the team.',
+                arch_feature2: 'Responsive & Comfortable Design',
+                arch_feature2_desc: 'User interface built to work with absolute efficiency on smartphones and supports eye-comforting Dark Mode.',
+                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Security',
+
+                why_title: 'Why Tawteen 360?',
+                why_subtitle: 'Competitive advantages and selling points',
+                why1_title: 'Modern Responsive Design',
+                why1_desc: 'User interface built to work with absolute efficiency on smartphones and supports eye-comforting Dark Mode.',
+                why2_title: 'Progressive Web App PWA',
+                why2_desc: 'Ability to download the app directly on phones and tablets and browse with a native-like experience.',
+                why3_title: 'Real-time Sync & Security',
+                why3_desc: 'Built on Supabase cloud architecture with a strict Role-Based Access Control (RBAC) permission system.',
+                why4_title: 'Smart Multi-Currency',
+                why4_desc: 'An integrated system for tracking and managing exchange rates and financial differences between currencies.',
+                why5_title: 'Authentic Arabic RTL Experience',
+                why5_desc: 'Designed from scratch to support Arabic right-to-left interfaces with fonts and layouts suitable for Arab users.',
+                why6_title: 'Flexible Modular Architecture',
+                why6_desc: 'A customizable system that allows enabling or hiding specific modules to fit your company size and activity type.',
+
+                how_to_badge: 'User Guide', how_to_title: 'How to Use the App', how_to_subtitle: 'Watch this introductory video to learn about the app interface and how to start managing your business easily.',
+                reports_badge: 'Reports & Documents',
+                reports_title: 'Comprehensive Reports
+and Professional Documents',
+                reports_desc: 'Generate professional invoices and quotations, extract performance and budget reports, and import/export data to support external accounting.',
+                reports_point1: 'Real-time financial performance reports',
+                reports_point2: 'Professional invoices and quotations',
+                reports_point3: 'Data import and export',
+                reports_point4: 'Financial and operational activity summary',
+                placeholder_report1: 'Financial Performance Report', placeholder_report2: 'Project Analysis',
+                placeholder_report3: 'Commercial Invoice', placeholder_report4: 'Dashboard View',
+
+                cta_title: 'Prepare Your Business for the Future',
+                cta_subtitle: 'Join thousands of companies that trust Tawteen 360 to manage their resources. Start your digital transformation journey today.',
+                cta_button: 'Contact Us',
+
+                footer_desc: 'An integrated enterprise management system that combines power and simplicity to help you grow your business.',
+                footer_links: 'Quick Access',
+                footer_contact: 'Contact Us',
+                footer_address: 'Riyadh, Kingdom of Saudi Arabia',
+                footer_newsletter: 'Newsletter',
+                footer_newsletter_desc: 'Subscribe to get the latest news and updates',
+                footer_rights: 'All Rights Reserved 2026 Tawteen 360',
+                footer_privacy: 'Privacy Policy',
+                footer_terms: 'Terms of Use',
+
+                chat_title: 'Tawteen 360 Assistant',
+                chat_status: 'Online now',
+                chat_welcome: 'Hello! I am the Tawteen 360 smart assistant. You can ask me anything about the app, modules, features, or how to get started. How can I help you today?',
+                chat_placeholder: 'Type your message here...',
+                chat_quick1: 'What is Tawteen 360?',
+                chat_quick2: 'Available modules',
+                chat_quick3: 'How to start?'
+            },
+            tr: {
+                dir: 'ltr', font: 'font-tr',
+                brand: 'Tawteen 360', brand_slogan: 'Kapsamlı Finansal Sisteminiz',
+                nav_features: 'Özellikler', nav_modules: 'Modüller', nav_architecture: 'Mimari', nav_about: 'Hakkında', nav_contact: 'İletişim', nav_cta: 'Hemen Başlayın',
+                language: 'Dil',
+                hero_badge: 'Entegre ERP Sistemi v3.2',
+                hero_title_1: '', hero_title_2: 'Tawteen 360', hero_title_3: 'Entegre Sistem',
+                hero_subtitle: 'Finansal, proje, nakliye ve üretim yönetimi için akıllı çözümler tek güvenli bulut platformunda.',
+                hero_cta_primary: 'Ücretsiz Başlayın', hero_cta_secondary: 'Modülleri Keşfedin',
+                hero_trust1: 'Banka Düzeyinde Güvenlik', hero_trust2: '%100 Bulut', hero_trust3: 'PWA',
+
+                platforms_title: 'Tüm Cihazlarınızda Tawteen 360',
+                platforms_subtitle: 'Tawteen 360, gerçek zamanlı veri senkronizasyonu ile tüm cihazlarınızda çalışır',
+                platform_desktop: 'Bilgisayarlar',
+                platform_android: 'Android Cihazlar',
+                platform_ios: 'iOS Cihazlar',
+
+                mission_badge: 'Vizyon ve Misyon',
+                mission_title: 'Karmaşık Operasyonları
+Birleşik Bir Ortamda Dijitalleştirme',
+                mission_desc1: 'Tawteen 360, finansal yönetim, muhasebe, proje yönetimi, nakliye ve üretimi tek bir bulut platformunda birleştirir. Akıllı telefonlarda mutlak verimlilikle çalışacak şekilde tasarlanmıştır ve gözü rahatlatan Karanlık Mod desteğine sahiptir.',
+                mission_desc2: 'Katma değer, "Mimari Birbirine Bağlılık"ta yatmaktadır; girilen bir gider doğrudan belirli bir projeye, sevkiyata veya üretim hattına bağlanabilir, bu da yönetime tek bir ekrandan tüm maliyetlerin ve karların 360 derecelik bir görünümünü sağlar.',
+                mission_point1: 'Gerçek Zamanlı Senkronizasyon', mission_point2: 'Çevrimdışı PWA', mission_point3: 'Çoklu Para Birimi',
+                placeholder_title: 'Açıklayıcı Görsel', placeholder_desc: 'Anlamlı bir tasarımla değiştirilecektir',
+
+                modules_badge: 'Temel İşlevler',
+                modules_title: 'Entegre Sistem Modülleri',
+                modules_subtitle: 'Şirketinizin tüm operasyonel yönlerini kapsayan kapsamlı çözümler',
+                mod1_title: 'Fonlar ve Likidite', mod1_subtitle: 'Nakit ve Banka Yönetimi',
+                mod1_desc: 'Giriş ve çıkış hareketlerini takip edin ve fonlar arasında kolaylık ve güvenle para transferi yapın.',
+                mod2_title: 'Büyük Defter', mod2_subtitle: 'Muhasebe Kayıtları',
+                mod2_desc: 'Alacak ve borç işlemlerini takip edin, müşteri ve tedarikçi birikimli bakiyelerini hesaplayın.',
+                mod3_title: 'İşletme', mod3_subtitle: 'Giderler ve Gelirler',
+                mod3_desc: 'Projelere veya üretim hatlarına bağlama yeteneğiyle doğrudan bağımsız gider ve gelirleri kaydedin.',
+                mod4_title: 'Projeler', mod4_subtitle: 'Maliyetler ve Karlar',
+                mod4_desc: 'Proje maliyetlerini, karlarını ve her proje için tamamlanma yüzdelerini takip edin.',
+                mod5_title: 'Nakliye ve Konteynerler', mod5_subtitle: 'Lojistik ve Gümrük',
+                mod5_desc: 'Konteynerleri, sevkiyatları, lojistik masrafları ve gümrük muayene maliyetlerini takip edin.',
+                mod6_title: 'Üretim ve İmalat', mod6_subtitle: 'Üretim Hatları',
+                mod6_desc: 'Hammadde maliyetlerini ve satışları hesaplayın ve üretim hatlarını gerçek zamanlı izleyin.',
+                placeholder_module: 'Modül Görseli',
+
+                arch_badge: 'Teknik Mimari',
+                arch_title: 'Modüler Uygulama Yapısı',
+                arch_subtitle: 'Şirketinizin büyüklüğüne ve faaliyet türüne uygun modülleri etkinleştirmenize veya gizlemenize olanak tanıyan özelleştirilebilir bir sistem',
+                arch_dashboard: 'Ana Kontrol Paneli',
+                arch_funds: 'Fonlar', arch_accounts: 'Hesaplar',
+                arch_business: 'İşletme', arch_projects: 'Projeler',
+                arch_shipping: 'Nakliye', arch_production: 'Üretim',
+                arch_reports: 'Raporlar', arch_documents: 'Ticari Belgeler',
+                arch_details_title: 'Gelişmiş Yazılım Mimarisi',
+                arch_details_desc: 'Uygulama, sistemi entegre Modüllere ayıran bir yazılım mimarisine dayanmaktadır; her biri tam bağımsızlıkla çalışırken aralarında akıllı birbirine bağlanma sağlar.',
+                arch_feature1: 'Gerçek Zamanlı Senkronizasyon ve Bulut Güvenliği',
+                arch_feature1_desc: 'Ekip genelinde gerçek zamanlı veri senkronizasyonunu sağlamak için Supabase bulut mimarisi üzerine inşa edilmiştir.',
+                arch_feature2: 'Duyarlı ve Rahat Tasarım',
+                arch_feature2_desc: 'Akıllı telefonlarda mutlak verimlilikle çalışacak ve gözü rahatlatan Karanlık Modu destekleyecek şekilde oluşturulmuş kullanıcı arayüzü.',
+                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Güvenlik',
+
+                why_title: 'Neden Tawteen 360?',
+                why_subtitle: 'Rekabetçi avantajlar ve satış noktaları',
+                why1_title: 'Modern Duyarlı Tasarım',
+                why1_desc: 'Akıllı telefonlarda mutlak verimlilikle çalışacak ve gözü rahatlatan Karanlık Modu destekleyen kullanıcı arayüzü.',
+                why2_title: 'Progresif Web Uygulaması PWA',
+                why2_desc: 'Uygulamayı doğrudan telefonlara ve tabletlerine indirme ve yerel uygulama benzeri deneyimle gezinme olanağı.',
+                why3_title: 'Gerçek Zamanlı Senkronizasyon ve Güvenlik',
+                why3_desc: 'Supabase bulut mimarisi üzerine inşa edilmiş, katı Rol Tabanlı Erişim Kontrolü (RBAC) izin sistemi ile.',
+                why4_title: 'Akıllı Çoklu Para Birimi',
+                why4_desc: 'Para birimleri arasındaki döviz kurlarını ve finansal farkları takip ve yönetmek için entegre bir sistem.',
+                why5_title: 'Otantik Arapça RTL Deneyimi',
+                why5_desc: 'Arapça sağdan sola arayüzlerini desteklemek için sıfırdan tasarlanmış, Arap kullanıcılara uygun yazı tipleri ve düzenler ile.',
+                why6_title: 'Esnek Modüler Mimari',
+                why6_desc: 'Şirketinizin büyüklüğüne ve faaliyet türüne uygun modülleri etkinleştirmenize veya gizlemenize olanak tanıyan özelleştirilebilir bir sistem.',
+
+                how_to_badge: 'Kullanım Kılavuzu', how_to_title: 'Uygulama Nasıl Kullanılır', how_to_subtitle: 'Uygulama arayüzünü ve işinizi kolayca yönetmeye nasıl başlayacağınızı öğrenmek için bu tanıtım videosunu izleyin.',
+                reports_badge: 'Raporlar ve Belgeler',
+                reports_title: 'Kapsamlı Raporlar
+ve Profesyonel Belgeler',
+                reports_desc: 'Profesyonel faturalar ve teklifler oluşturun, performans ve bütçe raporları çıkarın ve harici muhasebeyi desteklemek için veri içe/dışa aktarın.',
+                reports_point1: 'Gerçek zamanlı finansal performans raporları',
+                reports_point2: 'Profesyonel faturalar ve teklifler',
+                reports_point3: 'Veri içe ve dışa aktarma',
+                reports_point4: 'Finansal ve operasyonel faaliyet özeti',
+                placeholder_report1: 'Finansal Performans Raporu', placeholder_report2: 'Proje Analizi',
+                placeholder_report3: 'Ticari Fatura', placeholder_report4: 'Kontrol Paneli Görünümü',
+
+                cta_title: 'İşletmenizi Geleceğe Hazırlayın',
+                cta_subtitle: 'Kaynaklarını yönetmek için Tawteen 360'a güvenen binlerce şirkete katılın. Dijital dönüşüm yolculuğunuza bugün başlayın.',
+                cta_button: 'Bize Ulaşın',
+
+                footer_desc: 'İşletmenizi büyütmenize yardımcı olmak için güç ve sadelik bir arada getiren entegre bir kurumsal yönetim sistemi.',
+                footer_links: 'Hızlı Erişim',
+                footer_contact: 'İletişim',
+                footer_address: 'Riyad, Suudi Arabistan Krallığı',
+                footer_newsletter: 'Bülten',
+                footer_newsletter_desc: 'En son haber ve güncellemeleri almak için abone olun',
+                footer_rights: 'Tüm Hakları Saklıdır © 2026 Tawteen 360',
+                footer_privacy: 'Gizlilik Politikası',
+                footer_terms: 'Kullanım Koşulları',
+
+                chat_title: 'Tawteen 360 Asistanı',
+                chat_status: 'Çevrimiçi',
+                chat_welcome: 'Merhaba! Ben Tawteen 360 akıllı asistanıyım. Uygulama, modüller, özellikler veya nasıl başlayacağınız hakkında bana her şeyi sorabilirsiniz. Size bugün nasıl yardımcı olabilirim?',
+                chat_placeholder: 'Mesajınızı buraya yazın...',
+                chat_quick1: 'Tawteen 360 nedir?',
+                chat_quick2: 'Mevcut modüller',
+                chat_quick3: 'Nasıl başlarım?'
+            }
+        };
+
+        let currentLang = 'ar';
+        let chatOpen = false;
+
+        // ==================== LANGUAGE SWITCHER ====================
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            const html = document.documentElement;
+            html.dir = t.dir;
+            html.lang = lang;
+            document.body.className = document.body.className.replace(/font-(ar|en|tr)/g, '');
+            document.body.classList.add(t.font);
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        el.textContent = t[key];
+                        el.style.opacity = '1';
+                    }, 150);
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+
+            const labels = { ar: 'العربية', en: 'English', tr: 'Türkçe' };
+            document.getElementById('current-lang-label').textContent = labels[lang];
+            document.getElementById('lang-dropdown').classList.add('hidden-dropdown');
+            document.getElementById('lang-arrow').style.transform = 'rotate(0deg)';
+        }
+
+        function toggleLangDropdown() {
+            const dropdown = document.getElementById('lang-dropdown');
+            const arrow = document.getElementById('lang-arrow');
+            const isHidden = dropdown.classList.contains('hidden-dropdown');
+            if (isHidden) {
+                dropdown.classList.remove('hidden-dropdown');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                dropdown.classList.add('hidden-dropdown');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function toggleLangDropdownMobile() { toggleMobileMenu(); }
+
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('lang-dropdown-container');
+            const dropdown = document.getElementById('lang-dropdown');
+            if (!container.contains(e.target)) {
+                dropdown.classList.add('hidden-dropdown');
+                document.getElementById('lang-arrow').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // ==================== MOBILE MENU ====================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // ==================== SCROLL ANIMATIONS ====================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ==================== NAVBAR SCROLL ====================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) navbar.classList.add('shadow-md');
+            else navbar.classList.remove('shadow-md');
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ==================== CHATBOT ====================
+        function toggleChat() {
+            const chatBox = document.getElementById('chat-window');
+            const iconOpen = document.getElementById('chat-icon-open');
+            const iconClose = document.getElementById('chat-icon-close');
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatBox.classList.remove('closed');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                chatBox.classList.add('closed');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        const botResponses = {
+            ar: {
+                'ما هو توطين 360': 'توطين 360 (المساعد المالي v3.2) هو نظام متكامل ومحمول لإدارة الأعمال، يجمع بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة.',
+                'الاقسام المتاحة': 'الاقسام المتاحة هي: الصناديق والسيولة، دفتر الأستاذ، الأعمال، المشاريع، الشحن والحاويات، الإنتاج والتصنيع، التقارير، والمستندات التجارية.',
+                'كيف أبدأ': 'يمكنك البدء بالتواصل معنا عبر نموذج الاتصال في أسفل الصفحة، أو الضغط على زر "ابدأ الآن" للحصول على نسخة تجريبية مجانية.',
+                'default': 'شكراً لتواصلك! يمكنني الإجابة على استفساراتك حول توطين 360. جرب طرح أسئلة مثل: "ما هي الاقسام المتاحة؟" أو "كيف أبدأ؟"'
+            },
+            en: {
+                'what is tawteen 360': 'Tawteen 360 (Financial Assistant v3.2) is an integrated and portable business management system that combines financial management, accounting, project management, shipping, and production in one cloud platform.',
+                'available modules': 'Available modules are: Funds & Liquidity, General Ledger, Business, Projects, Shipping & Containers, Production & Manufacturing, Reports, and Commercial Documents.',
+                'how to start': 'You can start by contacting us through the contact form at the bottom of the page, or clicking the "Get Started" button for a free trial.',
+                'default': 'Thank you for reaching out! I can answer your questions about Tawteen 360. Try asking: "What are the available modules?" or "How to start?"'
+            },
+            tr: {
+                'tawteen 360 nedir': 'Tawteen 360 (Finansal Asistan v3.2), finansal yönetim, muhasebe, proje yönetimi, nakliye ve üretimi tek bir bulut platformunda birleştiren entegre ve taşınabilir bir iş yönetim sistemidir.',
+                'mevcut modüller': 'Mevcut modüller: Fonlar ve Likidite, Büyük Defter, İşletme, Projeler, Nakliye ve Konteynerler, Üretim ve İmalat, Raporlar ve Ticari Belgeler.',
+                'nasıl başlarım': 'Sayfanın altındaki iletişim formundan bize ulaşarak veya "Hemen Başlayın" düğmesine tıklayarak ücretsiz deneme sürümü alarak başlayabilirsiniz.',
+                'default': 'Ulaştığınız için teşekkürler! Tawteen 360 hakkındaki sorularınızı yanıtlayabilirim. Şunu sormayı deneyin: "Mevcut modüller nelerdir?" veya "Nasıl başlarım?"'
+            }
+        };
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chat-messages');
+            const bubble = document.createElement('div');
+            bubble.className = `chat-bubble ${sender}`;
+            bubble.textContent = text;
+            container.appendChild(bubble);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTyping() {
+            const container = document.getElementById('chat-messages');
+            const typing = document.createElement('div');
+            typing.id = 'typing-indicator';
+            typing.className = 'chat-bubble bot';
+            typing.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+            container.appendChild(typing);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing-indicator');
+            if (typing) typing.remove();
+        }
+
+        function getBotResponse(input) {
+            const langResponses = botResponses[currentLang];
+            const lower = input.toLowerCase();
+            for (const key in langResponses) {
+                if (lower.includes(key)) return langResponses[key];
+            }
+            return langResponses['default'];
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            input.value = '';
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                addMessage(getBotResponse(text), 'bot');
+            }, 1200);
+        }
+
+        function sendQuickMessage(text) {
+            addMessage(text, 'user');
+            showTyping();
+            setTimeout(() => {
+                hideTyping();
+                addMessage(getBotResponse(text), 'bot');
+            }, 1200);
+        }
+    </script>
+
+    <script src="lucide.min.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
