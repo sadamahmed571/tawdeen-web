@@ -188,9 +188,12 @@
             bottom: 24px;
             z-index: 50;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
         }
-        html[dir="rtl"] .chat-widget { left: 20px; }
-        html[dir="ltr"] .chat-widget { right: 20px; }
+        html[dir="rtl"] .chat-widget { left: 20px;     pointer-events: none;
+        }
+        html[dir="ltr"] .chat-widget { right: 20px;     pointer-events: none;
+        }
 
         .chat-window {
             width: 380px;
@@ -205,6 +208,7 @@
             box-shadow: 0 20px 60px -10px rgba(0,0,0,0.25);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: bottom;
+            pointer-events: auto;
         }
         .chat-window.closed {
             transform: scale(0.9);
@@ -277,7 +281,8 @@
     bottom: 0;
     z-index: 1000;
 	 
-}
+    pointer-events: auto;
+        }
         .chat-toggle-btn:hover {
             background: rgba(0, 57, 142, 0.93);
             border: 1px solid white;
@@ -304,6 +309,7 @@
             bottom: 0;
             z-index: 1000;
             text-decoration: none;
+            pointer-events: auto;
         }
         .download-toggle-btn:hover {
             background: rgba(0, 57, 142, 0.93);
