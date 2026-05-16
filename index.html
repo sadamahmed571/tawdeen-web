@@ -1,1693 +1,1015 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tawteen 360 - نظام متكامل لإدارة الأعمال والموارد">
-    <title>Tawteen 360 | توطين 360</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>  360 - نظامك المالي الشامل</title>
+   
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
 
-    <!-- Google Fonts: Tajawal for Arabic, Inter for Latin -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="style.css">
-
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0F4EA3',
-                        secondary: 'hsl(199, 72%, 42%)',
-                        success: 'hsl(145, 65%, 42%)',
-                        warning: 'hsl(0, 72%, 51%)',
-                        alert: 'hsl(38, 92%, 50%)',
-                        surface: 'hsl(210, 45%, 97%)',
-                        darkbg: '#0f172a',
-                    },
-                    fontFamily: {
-                        ar: ['Tajawal', 'sans-serif'],
-                        en: ['Inter', 'sans-serif'],
-                        tr: ['Inter', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(15, 78, 163, 0.08)',
-                        'glow': '0 0 40px -10px rgba(15, 78, 163, 0.15)',
-                        'chat': '0 10px 40px -10px rgba(0,0,0,0.2)',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-
-    </style>
-<base target="_blank">
+  
+ 
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-surface text-slate-800 antialiased font-ar">
+<body>
 
-    <!-- ==================== NAVBAR ==================== -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/70">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                   <img src="logo.jpeg"
-     alt="Tawteen 360 Logo"
-     class="h-16 lg:h-19 w-auto object-contain rounded-xl shadow-sm border-2 border-secondary/30 p-[2px]">
-                    <div class="flex flex-col justify-center">
-                        <span class="text-[22px] lg:text-[26px] font-bold text-primary tracking-tight leading-none" data-i18n="brand">توطين 360</span>
-                        <span class="text-[12px] lg:text-[13px] text-slate-500 font-medium mt-1 tracking-wide" data-i18n="brand_slogan">نظامك المالي الشامل</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#features" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_features">المميزات</a>
-                    <a href="#modules" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_modules">الاقسام</a>
-                    <a href="#architecture" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_architecture">البنية</a>
-                    <a href="#about" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_about">عن التطبيق</a>
-                    <a href="#pricing" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_pricing">الأسعار</a>
-                    <a href="#contact" class="nav-link text-slate-600 hover:text-primary font-bold text-[13px] lg:text-[19px]" data-i18n="nav_contact">تواصل معنا</a>
-                </div>
-                <div class="hidden md:flex items-center gap-4">
-                    <div class="relative" id="lang-dropdown-container">
-                        <button onclick="toggleLangDropdown()" class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 hover:border-primary/50 hover:bg-primary/5 transition-all text-sm font-medium text-slate-700">
-                            <i data-lucide="globe" class="w-4 h-4 text-primary"></i>
-                            <span id="current-lang-label">العربية</span>
-                            <i id="lang-arrow" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
-                        </button>
-                        <div id="lang-dropdown" class="lang-dropdown hidden-dropdown absolute mt-2 w-40 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
-                            <button onclick="switchLanguage('ar')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
-                                <span class="w-5 text-center">🇸🇦</span> العربية
-                            </button>
-                            <button onclick="switchLanguage('en')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
-                                <span class="w-5 text-center">🇬🇧</span> English
-                            </button>
-                            <button onclick="switchLanguage('tr')" class="w-full text-start px-4 py-3 hover:bg-primary/5 text-sm font-medium text-slate-700 hover:text-primary transition-colors flex items-center gap-2">
-                                <span class="w-5 text-center">🇹🇷</span> Türkçe
-                            </button>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-shine px-6 py-2.5 bg-primary text-white rounded-lg font-semibold text-sm shadow-lg shadow-primary/30 hover:shadow-primary/40 hover:bg-[#0d438c] transition-all">
-                        <span data-i18n="nav_cta">ابدأ الآن</span>
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center gap-4">
-                    <button onclick="toggleLangDropdownMobile()" class="p-2 rounded-lg border border-slate-200 text-slate-600">
-                        <i data-lucide="globe" class="w-5 h-5"></i>
-                    </button>
-                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100">
-                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
-                        <i id="close-icon" data-lucide="x" class="w-6 h-6 hidden"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="التنقل">
+
+
+    <a href="#screens"><i data-lucide="smartphone" width="18" height="18"></i> التطبيق</a>
+   
+    <a href="#features"><i data-lucide="layers" width="18" height="18"></i> المميزات</a>
+    <a href="#pricing"><i data-lucide="credit-card" width="18" height="18"></i> الأسعار</a>
+      <a href="#companies"><i data-lucide="building-2" width="18" height="18"></i> نظام الشركات</a>
+    
+    <a href="#faq"><i data-lucide="help-circle" width="18" height="18"></i> الأسئلة الشائعة</a>
+    <a href="#" class="mobile-cta btn-primary"><i data-lucide="rocket" width="18" height="18"></i> ابدأ التجربة المجانية</a>
+  </div>
+
+  <!-- ── 1. NAV ── -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="القائمة الرئيسية">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="img/logo.jpg" class="custom-logo" alt="logo" />
+        <div class="logo-text">
+          <p>360</p>
+          <span class="brand-slogan" data-i18n="brand_slogan">نظامك المالي الشامل</span>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-100">
-            <div class="px-4 py-6 space-y-4">
-                <a href="#features" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_features">المميزات</a>
-                <a href="#modules" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_modules">الاقسام</a>
-                <a href="#architecture" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_architecture">البنية</a>
-                <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_about">عن التطبيق</a>
-                <a href="#pricing" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_pricing">الأسعار</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-medium" data-i18n="nav_contact">تواصل معنا</a>
-                <div class="pt-4 border-t border-slate-200">
-                    <p class="px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="language">اللغة</p>
-                    <div class="grid grid-cols-3 gap-2 px-4">
-                        <button onclick="switchLanguage('ar'); toggleMobileMenu()" class="py-2 rounded-lg bg-primary/10 text-primary font-medium text-sm">العربية</button>
-                        <button onclick="switchLanguage('en'); toggleMobileMenu()" class="py-2 rounded-lg bg-slate-100 text-slate-600 font-medium text-sm hover:bg-slate-200">English</button>
-                        <button onclick="switchLanguage('tr'); toggleMobileMenu()" class="py-2 rounded-lg bg-slate-100 text-slate-600 font-medium text-sm hover:bg-slate-200">Türkçe</button>
-                    </div>
-                </div>
+      </a>
+	  
+      <ul class="nav-links" role="list">
+        <li><a href="#screens"><i data-lucide="smartphone" width="16" height="16"></i> التطبيق</a></li>
+       
+        <li><a href="#features"><i data-lucide="layers" width="16" height="16"></i> المميزات</a></li>
+        <li><a href="#pricing"><i data-lucide="credit-card" width="16" height="16"></i> الأسعار</a></li>
+         <li><a href="#companies"><i data-lucide="building-2" width="16" height="16"></i> الشركات</a></li>
+        <li><a href="#faq"><i data-lucide="help-circle" width="16" height="16"></i> الأسئلة الشائعة</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="icon-btn" id="themeToggle" title="تغيير الثيم">
+          <i data-lucide="moon" width="20" height="20"></i>
+        </button>
+        <button class="icon-btn" id="langToggle" title="تغيير اللغة">
+          <i data-lucide="languages" width="20" height="20"></i>
+        </button>
+        <a href="#" class="btn-primary"><i data-lucide="rocket" width="16" height="16"></i> ابدأ التجربة المجانية</a>
+      </div>
+
+      <div class="nav-mobile-actions">
+        <button class="icon-btn" id="mobileThemeToggleHeader" title="تغيير الثيم">
+          <i data-lucide="moon" width="18" height="18"></i>
+        </button>
+        <button class="icon-btn" id="mobileLangToggleHeader" title="تغيير اللغة">
+          <i data-lucide="languages" width="18" height="18"></i>
+        </button>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="فتح القائمة" aria-expanded="false">
+
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── 2. HERO ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <div class="hero-badge-dot"><i data-lucide="sparkles" width="12" height="12"></i></div>
+            <span>نظام <strong>متكامل لإدارة الأعمال</strong> v3.2</span>
+          </div>
+          <h1 class="hero-title reveal reveal-delay-1">
+            تطبيق 360 المحاسبي لإعمالك و مشاريعك .. <br><em>من شاشة واحدة.
+          </em></h1>
+          <p class="hero-sub reveal reveal-delay-2">
+              360 يجمع بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة. رقمنة متكاملة لجميع عملياتك التشغيلية.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#" class="btn-primary-lg">
+              ابدأ مجاناً  
+              <span class="btn-arrow"><i data-lucide="arrow-left" class="btn-outline-lg-icon" ></i></span>
+            </a>
+            <a href="#screens" class="btn-outline-lg">
+              شاهده قيد العمل
+			   <span><i data-lucide="play" class="btn-outline-lg-icon"   fill="currentColor"></i></span>
+            </a>
+          </div>
+          <div class="hero-trust reveal reveal-delay-4">
+            <div class="trust-item">
+              <i data-lucide="shield-check" width="16" height="16"></i>
+              آمان عالي
             </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <i data-lucide="zap" width="16" height="16"></i>
+             ضمان استقرار الخدمة
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <i data-lucide="users" width="16" height="16"></i>
+              327 مشترك +
+            </div>
+          </div>
         </div>
-    </nav>
-
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 hero-bg overflow-hidden">
-        <div class="absolute top-20 start-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 end-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-
-
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 lg:gap-16 items-center">
-                <div class="text-center lg:text-start space-y-4 sm:space-y-8 reveal visible">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/10">
-                        <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
-                        <span data-i18n="hero_badge">نظام ERP متكامل v3.2</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.4] lg:leading-[1.2]">
-                        <span data-i18n="hero_title_1" class="text-slate-900">نظام</span>
-                        <span class="gradient-text" data-i18n="hero_title_2">توطين 360</span><br>
-                        <span data-i18n="hero_title_3" class="text-slate-900">المتكامل</span>
-                    </h1>
-                    <p class="text-base sm:text-xl font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="hero_subtitle">
-                        حلول ذكية لإدارة أعمالك المالية والمشاريع والشحن والإنتاج في منصة سحابية واحدة آمنة وموثوقة
-                    </p>
-                    <div class="flex flex-row gap-2 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto px-2 sm:px-0">
-                        <a href="#contact" class="btn-shine flex-1 sm:flex-none px-3 py-3 sm:px-8 sm:py-4 bg-primary text-white rounded-xl font-bold text-sm sm:text-lg shadow-xl shadow-primary/30 hover:shadow-primary/40 hover:bg-[#0d438c] transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center">
-                            <span data-i18n="hero_cta_primary">ابدأ الآن مجاناً</span>
-                            <i data-lucide="rocket" class="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"></i>
-                        </a>
-                        <a href="#modules" class="flex-1 sm:flex-none px-3 py-3 sm:px-8 sm:py-4 bg-white text-primary border-2 border-primary/20 rounded-xl font-bold text-sm sm:text-lg hover:border-primary/40 hover:bg-primary/5 transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center">
-                            <span data-i18n="hero_cta_secondary">اكتشف الاقسام</span>
-                        </a>
-                    </div>
-
-
-                    <div class="flex items-center gap-6 justify-center lg:justify-start pt-2 text-slate-500 text-[14px] lg:text-[16px] opacity-80">
-                        <div class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust1">أمان بنكي</span></div>
-                        <div class="flex items-center gap-1.5"><i data-lucide="cloud" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust2">سحابي 100%</span></div>
-                        <div class="flex items-center gap-1.5"><i data-lucide="smartphone" class="w-4 h-4 text-success"></i><span data-i18n="hero_trust3">لكل الأجهزة</span></div>
-                    </div>
-                </div>
-                <div class="relative flex justify-center reveal visible mt-10">
-                    <div class="phone-frame w-[280px] h-[570px] sm:w-[300px] sm:h-[600px] animate-float">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen p-6 pt-12 flex flex-col gap-4">
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center"><i data-lucide="zap" class="w-4 h-4 text-white"></i></div>
-                                <div class="text-xs font-bold text-slate-800">توطين 360</div>
-                                <div class="w-8 h-8 rounded-full bg-slate-200"></div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                                    <div class="text-[10px] text-slate-500 mb-1">السيولة</div>
-                                    <div class="text-sm font-bold text-success">+12.5%</div>
-                                    <div class="w-full h-1 bg-slate-100 rounded-full mt-2 overflow-hidden"><div class="h-full w-3/4 bg-success rounded-full"></div></div>
-                                </div>
-                                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                                    <div class="text-[10px] text-slate-500 mb-1">المصروفات</div>
-                                    <div class="text-sm font-bold text-warning">-4.2%</div>
-                                    <div class="w-full h-1 bg-slate-100 rounded-full mt-2 overflow-hidden"><div class="h-full w-1/2 bg-warning rounded-full"></div></div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex-1 flex flex-col">
-                                <div class="text-xs font-bold text-slate-700 mb-3">لوحة التحكم</div>
-                                <div class="flex-1 flex items-end justify-between gap-1 px-2">
-                                    <div class="w-3 bg-primary/20 rounded-t" style="height: 40%"></div>
-                                    <div class="w-3 bg-primary/30 rounded-t" style="height: 60%"></div>
-                                    <div class="w-3 bg-primary/40 rounded-t" style="height: 45%"></div>
-                                    <div class="w-3 bg-primary/50 rounded-t" style="height: 80%"></div>
-                                    <div class="w-3 bg-primary/60 rounded-t" style="height: 65%"></div>
-                                    <div class="w-3 bg-primary rounded-t" style="height: 90%"></div>
-                                    <div class="w-3 bg-primary/80 rounded-t" style="height: 75%"></div>
-                                </div>
-                                <div class="flex justify-between mt-2 text-[8px] text-slate-400"><span>يناير</span><span>فبراير</span><span>مارس</span></div>
-                            </div>
-                            <div class="grid grid-cols-4 gap-2">
-                                <div class="aspect-square rounded-xl bg-primary/10 flex items-center justify-center"><i data-lucide="coins" class="w-5 h-5 text-primary"></i></div>
-                                <div class="aspect-square rounded-xl bg-secondary/10 flex items-center justify-center"><i data-lucide="clipboard-list" class="w-5 h-5 text-secondary"></i></div>
-                                <div class="aspect-square rounded-xl bg-success/10 flex items-center justify-center"><i data-lucide="truck" class="w-5 h-5 text-success"></i></div>
-                                <div class="aspect-square rounded-xl bg-warning/10 flex items-center justify-center"><i data-lucide="factory" class="w-5 h-5 text-warning"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute -top-1 end-10 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2" style="animation-delay: 1s;">
-                        <div class="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-success"></i></div>
-                        <span class="text-[13px] lg:text-[14px]   text-slate-700">تحديثات مستمرة</span>
-                    </div>
-                    <div class="absolute bottom-20 -start-1 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2" style="animation-delay: 2s;">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center"><i data-lucide="trending-up" class="w-4 h-4 text-primary"></i></div>
-                        <div><div class="text-[13px] lg:text-[14px] text-slate-500">نمو الأعمال</div><div class="text-xs lg:text-[14px] font-bold text-primary">+24.8%</div></div>
-                    </div>
-                </div>
+        <div class="hero-visual reveal reveal-delay-2">
+          <div class="hero-dashboard">
+            <div class="dashboard-bar">
+              <div class="db-dot"></div><div class="db-dot"></div><div class="db-dot"></div>
             </div>
-			<!-- News Ticker -->
-            <div class="mt-10 lg:mb-12 bg-white/80 backdrop-blur-sm border border-slate-200/60 border-r-4 border-r-red-500 rounded-md p-3 flex items-center gap-3 shadow-sm w-full max-w-3xl mx-auto overflow-hidden relative reveal visible">
-                <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="bell" class="w-4 h-4 text-primary animate-pulse"></i>
+            <div class="dashboard-body">
+              <div class="db-header">
+                <div class="db-title">أداء الفريق</div>
+                <div class="db-tag">مباشر</div>
+              </div>
+              <div class="db-chart">
+                <div class="db-bar" style="height:35%"></div>
+                <div class="db-bar" style="height:55%"></div>
+                <div class="db-bar" style="height:42%"></div>
+                <div class="db-bar active" style="height:75%"></div>
+                <div class="db-bar" style="height:60%"></div>
+                <div class="db-bar active" style="height:88%"></div>
+                <div class="db-bar" style="height:70%"></div>
+                <div class="db-bar active" style="height:92%"></div>
+              </div>
+              <div class="db-stats">
+                <div class="db-stat">
+                  <div class="db-stat-val">94<span style="font-size:.9rem;color:var(--accent)">%</span></div>
+                  <div class="db-stat-label">معدل المهام</div>
+                  <div class="db-stat-change">+12%</div>
                 </div>
-                <div class="font-bold text-sm text-slate-800 flex-shrink-0 border-l border-slate-200 pl-3 ml-1" data-i18n="ticker_title">جديدنا</div>
-                <div class="relative flex-1 h-12 overflow-hidden">
-                    <div id="news-ticker" class="absolute top-0 w-full transition-transform duration-500 ease-in-out flex flex-col">
-                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">إطلاق التحديث 3.2 مع دعم كامل للفوترة الإلكترونية وتعدد اللغات.</div>
-                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">تفعيل نظام الصلاحيات المتقدم لزيادة أمان وسرية بيانات المؤسسة.</div>
-                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">إضافة قسم الإنتاج والتصنيع لحساب تكاليف المواد الخام بدقة عالية.</div>
-                        <div class="h-12 flex items-center text-[12px] sm:text-sm font-medium text-slate-600 leading-tight sm:leading-normal">تزامن لحظي ومباشر مع كافة الأجهزة لدعم العمليات التشغيلية السريعة.</div>
-                    </div>
+                <div class="db-stat">
+                  <div class="db-stat-val">2.4<span style="font-size:.9rem;color:var(--accent)"> ألف</span></div>
+                  <div class="db-stat-label">مستخدم نشط</div>
+                  <div class="db-stat-change">+8%</div>
                 </div>
+                <div class="db-stat">
+                  <div class="db-stat-val">18<span style="font-size:.9rem;color:var(--accent)"> ساعة</span></div>
+                  <div class="db-stat-label">موفرة / أسبوع</div>
+                  <div class="db-stat-change">+24%</div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="hero-float-badge">
+            <div class="float-badge-icon"><i data-lucide="sparkles" width="18" height="18"></i></div>
+            <div class="float-badge-text">
+              <strong>تكامل جديد</strong>
+              <span>تم ربط Slack · الآن</span>
+            </div>
+          </div>
+          <div class="hero-float-badge-2">
+            <div class="float-badge-2-val">↑ 34%</div>
+            <div class="float-badge-2-label">الإنتاجية هذا الأسبوع</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const ticker = document.getElementById('news-ticker');
-                    if (ticker) {
-                        const items = ticker.children.length;
-                        let currentItem = 0;
-                        setInterval(() => {
-                            currentItem = (currentItem + 1) % items;
-                            const itemHeight = ticker.children[0].offsetHeight;
-                            ticker.style.transform = `translateY(-${currentItem * itemHeight}px)`;
-                        }, 3000);
-                    }
-                });
-            </script>
-			<!-- Subscribers & Share Widget -->
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-10 sm:gap-15 pt-4 mt-8 lg:mb-12">
-                        <div class="flex items-center gap-3 bg-white/50 backdrop-blur-sm px-4 py-1 rounded-2xl border border-slate-200/50 shadow-sm hover:shadow-md transition-all">
-                            <div class="flex -space-x-3 rtl:space-x-reverse">
+  <!-- ── 3. LOGO TICKER ── -->
+  <div class="ticker-section"  >
+    <div class="ticker-label">لماذا تطبيق 360 المحاسبي هو الافضل </div>
+    <div class="ticker-track-wrap">
+      <div class="ticker-track">
+        <!-- Set 1 -->
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="wallet" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الصناديق والسيولة</div>
+            <div class="ticker-item-features">المميزات: تتبع دقيق، نقل مرن للأموال، تحكم بالعملات المتعددة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">دفتر الأستاذ</div>
+            <div class="ticker-item-features">المميزات: مراقبة العمليات، حساب آلي للأرصدة، تسويات سريعة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="briefcase" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الأعمال</div>
+            <div class="ticker-item-features">المميزات: تصنيف دقيق، ربط مع المشاريع، تحليل الربحية.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="layers" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">المشاريع</div>
+            <div class="ticker-item-features">المميزات: حساب دقيق للتكاليف، تتبع حي للإنجاز، إدارة المستخلصات.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="truck" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الشحن والحاويات</div>
+            <div class="ticker-item-features">المميزات: تتبع الحاويات، إدارة المصاريف اللوجستية، تكاليف التخليص.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="factory" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الإنتاج والتصنيع</div>
+            <div class="ticker-item-features">المميزات: احتساب تكاليف المواد، مراقبة لحظية، تسعير دقيق للمنتج النهائي.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
 
-                                <div class="w-[50px] h-[50px] rounded-full border-2 border-white bg-primary text-white text-[15px] flex items-center justify-center font-bold shadow-sm">+300</div>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-[15px] font-bold text-slate-800 leading-none">322</span>
-                                <span class="text-[11px] text-slate-500 font-medium mt-0.5" data-i18n="hero_subscribers">مؤسسة مسجلة</span>
-                            </div>
-                        </div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="wallet" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الصناديق والسيولة</div>
+            <div class="ticker-item-features">المميزات: تتبع دقيق، نقل مرن للأموال، تحكم بالعملات المتعددة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">دفتر الأستاذ</div>
+            <div class="ticker-item-features">المميزات: مراقبة العمليات، حساب آلي للأرصدة، تسويات سريعة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="briefcase" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الأعمال</div>
+            <div class="ticker-item-features">المميزات: تصنيف دقيق، ربط مع المشاريع، تحليل الربحية.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="layers" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">المشاريع</div>
+            <div class="ticker-item-features">المميزات: حساب دقيق للتكاليف، تتبع حي للإنجاز، إدارة المستخلصات.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="truck" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الشحن والحاويات</div>
+            <div class="ticker-item-features">المميزات: تتبع الحاويات، إدارة المصاريف اللوجستية، تكاليف التخليص.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="factory" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الإنتاج والتصنيع</div>
+            <div class="ticker-item-features">المميزات: احتساب تكاليف المواد، مراقبة لحظية، تسعير دقيق للمنتج النهائي.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+		<!-- Set 1 -->
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="wallet" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الصناديق والسيولة</div>
+            <div class="ticker-item-features">المميزات: تتبع دقيق، نقل مرن للأموال، تحكم بالعملات المتعددة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">دفتر الأستاذ</div>
+            <div class="ticker-item-features">المميزات: مراقبة العمليات، حساب آلي للأرصدة، تسويات سريعة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="briefcase" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الأعمال</div>
+            <div class="ticker-item-features">المميزات: تصنيف دقيق، ربط مع المشاريع، تحليل الربحية.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="layers" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">المشاريع</div>
+            <div class="ticker-item-features">المميزات: حساب دقيق للتكاليف، تتبع حي للإنجاز، إدارة المستخلصات.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="truck" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الشحن والحاويات</div>
+            <div class="ticker-item-features">المميزات: تتبع الحاويات، إدارة المصاريف اللوجستية، تكاليف التخليص.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="factory" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الإنتاج والتصنيع</div>
+            <div class="ticker-item-features">المميزات: احتساب تكاليف المواد، مراقبة لحظية، تسعير دقيق للمنتج النهائي.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
 
-                        <button onclick="shareApp()" class="flex items-center gap-3 group cursor-pointer">
-                            <div class="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                                <i data-lucide="share-2" class="w-5 h-5"></i>
-                            </div>
-                            <div class="flex flex-col text-start">
-                                <span class="text-[15px] font-bold text-slate-800 group-hover:text-primary transition-colors" data-i18n="hero_share_title">شارك التطبيق</span>
-                                <span class="text-[11px] text-slate-500 font-medium mt-0.5" data-i18n="hero_share_subtitle">أرسله لزميلك في العمل</span>
-                            </div>
-                        </button>
-                    </div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="wallet" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الصناديق والسيولة</div>
+            <div class="ticker-item-features">المميزات: تتبع دقيق، نقل مرن للأموال، تحكم بالعملات المتعددة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">دفتر الأستاذ</div>
+            <div class="ticker-item-features">المميزات: مراقبة العمليات، حساب آلي للأرصدة، تسويات سريعة.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="briefcase" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الأعمال</div>
+            <div class="ticker-item-features">المميزات: تصنيف دقيق، ربط مع المشاريع، تحليل الربحية.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="layers" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">المشاريع</div>
+            <div class="ticker-item-features">المميزات: حساب دقيق للتكاليف، تتبع حي للإنجاز، إدارة المستخلصات.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="truck" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الشحن والحاويات</div>
+            <div class="ticker-item-features">المميزات: تتبع الحاويات، إدارة المصاريف اللوجستية، تكاليف التخليص.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+        <div class="ticker-item">
+          <div class="ticker-item-icon"><i data-lucide="factory" width="20" height="20"></i></div>
+          <div class="ticker-item-content">
+            <div class="ticker-item-name">الإنتاج والتصنيع</div>
+            <div class="ticker-item-features">المميزات: احتساب تكاليف المواد، مراقبة لحظية، تسعير دقيق للمنتج النهائي.</div>
+          </div>
+        </div>
+        <div class="ticker-dot"></div>
+      </div>
+    </div>
+  </div>
 
-                    <script>
-                        function shareApp() {
-                            if (navigator.share) {
-                                navigator.share({
-                                    title: 'توطين 360',
-                                    text: 'نظامك المالي الشامل للإدارة المحاسبية والمشاريع والإنتاج.',
-                                    url: window.location.href,
-                                }).then(() => console.log('Successful share'))
-                                  .catch((error) => console.log('Error sharing', error));
-                            } else {
-                                const url = window.location.href;
-                                navigator.clipboard.writeText(url);
-                                alert('تم نسخ رابط التطبيق، يمكنك الآن إرساله لأصدقائك!');
-                            }
-                        }
-                    </script>
+
+  <!-- ── 4. COMPANIES SYSTEM ── -->
+  <section class="companies-section" id="companies">
+    <div class="container">
+      <div class="companies-header">
+        <div class="section-label reveal">نظام الشركات المتكامل</div>
+        <h2 class="section-title reveal reveal-delay-1">إدارة مؤسسية مرنة <br><em>بصلاحيات ذكية</em></h2>
+        <p class="section-sub reveal reveal-delay-2">حل متكامل يتيح لك إدارة عدة شركات، توزيع الأدوار بدقة، وتخصيص النظام ليناسب احتياجات كل نشاط تجاري.</p>
+      </div>
+
+
+      <div class="companies-tabs-wrapper">
+        <!-- Tabs Navigation -->
+        <div class="companies-tabs-nav reveal reveal-delay-2">
+          <button class="tab-btn active" data-tab="tab-corp">
+            <i data-lucide="building-2"></i>
+            <span>إدارة الشركات</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-team">
+            <i data-lucide="users"></i>
+            <span>فريق العمل</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-config">
+            <i data-lucide="settings"></i>
+            <span>تخصيص النظام</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-admin">
+            <i data-lucide="shield-check"></i>
+            <span>المراقبة والتحكم</span>
+          </button>
         </div>
 
-    </section>
-
-
-
-    <!-- ==================== PLATFORMS SECTION ==================== -->
-    <section class="py-16 bg-white relative border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
-                <h2 class="text-2xl sm:text-4xl lg:text-[34px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="platforms_title">توطين 360 في كل أجهزتك</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="platforms_subtitle">يعمل تطبيق توطين 360 على مختلف اجهزتك بكل أنواعها ، مع تزامن بيانات لحظي</p>
+        <!-- Tabs Content -->
+        <div class="companies-tabs-content reveal reveal-delay-3">
+          <!-- Tab 1: Corporate Management -->
+          <div class="tab-pane active" id="tab-corp">
+            <div class="tab-grid">
+              <div class="tab-info">
+                <h3 class="tab-pane-title">الهوية المؤسسية وإدارة المنشآت</h3>
+                <p class="tab-pane-desc">أنشئ عدد غير محدود من الشركات وأدرها جميعاً من حساب واحد. خصص كل شركة ببياناتها الرسمية وشعارها المستقل لضمان احترافية المستندات.</p>
+                <ul class="tab-pane-list">
+                  <li><i data-lucide="check" width="16" height="16"></i> تخصيص الشعار والبيانات البنكية لكل شركة</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> إدخال السجل التجاري والرقم الضريبي المستقل</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> تحديد خطط اشتراك مرنة (أساسي، احترافي، مؤسسات)</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> التبديل السريع والآمن بين الشركات في ثوانٍ</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="visual-card-stack">
+                  <div class="v-card c1"><span>شركة الشحن العالمية</span></div>
+                  <div class="v-card c2"><span>مؤسسة التوريدات التجارية</span></div>
+                  <div class="v-card c3"><span>مصنع الإنتاج المتكامل</span></div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="grid grid-cols-3 gap-3 sm:gap-6 stagger-children">
-    <!-- Computers (Desktop) -->
-    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/90 to-blue-900/80 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg shadow-primary/20">
-        <div class="bg-slate-900/40 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
-            <!-- Icon -->
-            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-primary group-hover:bg-primary/10 transition-all duration-500 flex-shrink-0 border border-white/5">
-                <i data-lucide="monitor" class="w-6 h-6 sm:w-10 sm:h-10"></i>
+          <!-- Tab 2: Team Management -->
+          <div class="tab-pane" id="tab-team">
+            <div class="tab-grid">
+              <div class="tab-info">
+                <h3 class="tab-pane-title">إدارة فرق العمل وتوزيع الأدوار</h3>
+                <p class="tab-pane-desc">بيئة عمل تعاونية تتيح لك إضافة الموظفين ومنحهم أدواراً وظيفية محددة تضمن سير العمل بكفاءة عالية وأمان تام.</p>
+                <ul class="tab-pane-list">
+                  <li><i data-lucide="check" width="16" height="16"></i> 5 أدوار رئيسية (مالك، مدير، محاسب، عمليات، مشاهد)</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> متابعة نشاط المستخدمين وتاريخ آخر دخول</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> تفعيل وتعطيل حسابات الموظفين بمرونة</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> نظام حماية يمنع حذف المالك أو تعطل النظام</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="roles-display">
+                  <div class="role-tag owner">المالك</div>
+                  <div class="role-tag manager">المدير</div>
+                  <div class="role-tag accountant">المحاسب</div>
+                  <div class="role-tag employee">موظف</div>
+                </div>
+              </div>
             </div>
-            <!-- Content -->
-            <div class="flex flex-col items-center">
-                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_desktop">الحواسيب</h3>
-                <span class="text-[8px] sm:text-base   text-blue-200/60 group-hover:text-primary/70 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">Windows / Mac</span>
+          </div>
+
+          <!-- Tab 3: System Customization -->
+          <div class="tab-pane" id="tab-config">
+            <div class="tab-grid">
+              <div class="tab-info">
+                <h3 class="tab-pane-title">تخصيص الأقسام وصلاحيات الوحدات</h3>
+                <p class="tab-pane-desc">مرونة فائقة في تفعيل ما تحتاجه فقط من أقسام النظام. اجعل واجهة كل شركة مخصصة تماماً لطبيعة نشاطها التجاري.</p>
+                <ul class="tab-pane-list">
+                  <li><i data-lucide="check" width="16" height="16"></i> تفعيل أو تعطيل 10 أقسام رئيسية لكل شركة</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> تحديد صلاحيات (عرض، إضافة، تعديل، حذف) لكل قسم</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> تخصيص حدود تتبع الحاويات والعمليات اللوجستية</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> واجهة مستخدم مخصصة حسب الأقسام المفعلة</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="modules-grid">
+                  <div class="module-item active"><i data-lucide="truck"></i></div>
+                  <div class="module-item active"><i data-lucide="factory"></i></div>
+                  <div class="module-item"><i data-lucide="box"></i></div>
+                  <div class="module-item active"><i data-lucide="bar-chart-3"></i></div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Tab 4: Admin Control -->
+          <div class="tab-pane" id="tab-admin">
+            <div class="tab-grid">
+              <div class="tab-info">
+                <h3 class="tab-pane-title">صلاحيات المسؤول العام والمراقبة</h3>
+                <p class="tab-pane-desc">لوحة تحكم مركزية تمنحك الرؤية الشاملة والقدرة على التحكم في كافة جوانب النظام والشركات التابعة لك.</p>
+                <ul class="tab-pane-list">
+                  <li><i data-lucide="check" width="16" height="16"></i> إدارة تراخيص الشركات وخطط الاشتراك</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> إعادة تعيين كلمات المرور وإدارة الحماية</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> مراجعة البيانات البنكية والتقارير المالية الموحدة</li>
+                  <li><i data-lucide="check" width="16" height="16"></i> سجل عمليات كامل لضمان الشفافية والمساءلة</li>
+                </ul>
+              </div>
+              <div class="tab-visual">
+                <div class="admin-visual">
+                  <div class="admin-badge"><i data-lucide="eye"></i> <span>مراقبة مباشرة</span></div>
+                  <div class="admin-badge"><i data-lucide="lock"></i> <span>أمان SOC 2</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 5. 3D PHONE CAROUSEL ── -->
+
+  <section class="carousel-section" id="screens">
+    <div class="container">
+      <div class="carousel-header">
+        <div class="section-label reveal">تطبيق الهاتف</div>
+        <h2 class="section-title reveal reveal-delay-1">مساحة عملك،<br><em>في جيبك</em></h2>
+        <p class="section-sub reveal reveal-delay-2">  360 يدعم العمل دون اتصال (PWA) وتزامن لحظي للبيانات، لتتمكن من إدارة أموالك ومشاريعك من أي مكان.</p>
+      </div>
+    </div>
+    <div class="carousel-zoom">
+      <button class="zoom-btn" id="zoomOut" aria-label="تصغير"><i data-lucide="minus" width="16" height="16"></i></button>
+      <div class="zoom-pips" id="zoomPips"></div>
+      <button class="zoom-btn" id="zoomIn" aria-label="تكبير"><i data-lucide="plus" width="16" height="16"></i></button>
     </div>
 
-    <!-- Android -->
-    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-success/80 to-emerald-950 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg shadow-success/20">
-        <div class="bg-slate-900/40 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
-            <!-- Icon -->
-            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-success group-hover:bg-success/10 transition-all duration-500 flex-shrink-0 border border-white/5">
-                <i data-lucide="smartphone" class="w-6 h-6 sm:w-10 sm:h-10"></i>
+    <div class="carousel-stage" id="carouselStage">
+      <div class="carousel-track" id="carouselTrack">
+
+        <!-- Phone screens: 5 different screen designs + extras for looping -->
+        <!-- We will render 7 cards and cycle positions -->
+
+        <div class="phone-card" data-pos="left2" data-index="0">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="img/tm-622-screen-01.jpg" alt="App screen 1" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
             </div>
-            <!-- Content -->
-            <div class="flex flex-col items-center">
-                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_android">أجهزة الأندرويد</h3>
-                <span class="text-[8px] sm:text-base   text-emerald-200/60 group-hover:text-success/70 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">Android Phones</span>
-            </div>
+          </div>
+
         </div>
+
+        <div class="phone-card" data-pos="left1" data-index="1">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="img/tm-622-screen-02.jpg" alt="App screen 2" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="phone-card" data-pos="center" data-index="2">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="img/tm-622-screen-03.jpg" alt="App screen 3" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="phone-card" data-pos="right1" data-index="3">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="img/tm-622-screen-04.jpg" alt="App screen 4" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="phone-card" data-pos="right2" data-index="4">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="img/tm-622-screen-05.jpg" alt="App screen 5" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     </div>
 
-    <!-- iOS (iPhone) -->
-    <div class="group p-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 transition-all duration-500 reveal visible hover:shadow-glow shadow-lg hover:shadow-slate-500/30">
-        <div class="bg-slate-900/20 w-full h-full p-7 sm:p-8 rounded-[11px] sm:rounded-[15px] flex flex-col items-center justify-center text-center group-hover:bg-surface transition-colors duration-500">
-            <!-- Icon -->
-            <div class="w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-lg sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 text-white group-hover:text-slate-900 group-hover:bg-slate-900/10 transition-all duration-500 flex-shrink-0 border border-white/5">
-                <i data-lucide="smartphone" class="w-6 h-6 sm:w-10 sm:h-10"></i>
-            </div>
-            <!-- Content -->
-            <div class="flex flex-col items-center">
-                <h3 class="text-[14px] lg:text-[23px] font-bold text-white group-hover:text-slate-900 transition-colors duration-500" data-i18n="platform_ios">أجهزة الآيفون</h3>
-                <span class="text-[8px] sm:text-base   text-slate-400 group-hover:text-slate-600 mt-1 sm:mt-2 font-en uppercase tracking-wider transition-colors duration-500">iOS Phones</span>
-            </div>
-        </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:24px;width:100%;margin-top:48px;">
+      <button class="carousel-btn" id="carouselPrev" aria-label="الشاشة السابقة">
+        <i data-lucide="chevron-right" width="16" height="16"></i>
+      </button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="carouselNext" aria-label="الشاشة التالية">
+        <i data-lucide="chevron-left" width="16" height="16"></i>
+      </button>
     </div>
-</div>
+  </section>
+
+  <!-- ── 4. FEATURES ── -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="features-header">
+        <div class="section-label reveal">مميزات المنصة</div>
+        <h2 class="section-title reveal reveal-delay-1">بُنيت من أجل الوضوح<br><em>في كل المستويات</em></h2>
+        <p class="section-sub reveal reveal-delay-2">تم تصميم كل ميزة لتقليل العوائق وإبراز ما يهم. لا تعقيد، ولا متاهات في الإعدادات.</p>
+      </div>
+
+      <!-- Feature 1 -->
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <div class="feature-number">01 — إدارة السيولة والصناديق</div>
+          <h3 class="feature-title">تتبع كامل لحركة أموالك</h3>
+          <p class="feature-desc">تتبع حركات الدخول والخروج ونقل الأموال بين الصناديق المتعددة والتحكم بالعملات. سجل القيود المحاسبية وتتبع أرصدة العملاء والموردين بدقة متناهية.</p>
+          <div class="feature-checklist">
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>إدارة الصناديق المتعددة والعملات</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>دفتر أستاذ متكامل للعمليات الدائنة والمدينة</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>تتبع فوري للسيولة والأرباح والمصروفات</span></div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==================== MISSION / CONCEPT SECTION ==================== -->
-    <section class="py-10 lg:py-28 bg-surface relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div class="reveal visible">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-6">
-                        <i data-lucide="zap" class="w-4 h-4"></i>
-                        <span data-i18n="mission_badge">الرؤية والرسالة</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-3 sm:mb-6 leading-[1.4] lg:leading-[1.2]" data-i18n="mission_title">
-                        رقمنة العمليات المعقدة<br>في <span class="gradient-text">بيئة موحدة</span>
-                    </h2>
-                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-6" data-i18n="mission_desc1">
-                        يجمع توطين 360 بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة. مصمم ليعمل بكفاءة مطلقة على الهواتف الذكية مع دعم الوضع الليلي المريح للعين.
-                    </p>
-                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-8" data-i18n="mission_desc2">
-                        تكمن القيمة المضافة في "الترابط المعماري"؛ فالمصروف المدخل يمكن ربطه مباشرة بمشروع معين، أو شحنة، أو خط إنتاج، مما يمنح الإدارة العليا رؤية 360 درجة لجميع التكاليف والأرباح من شاشة واحدة.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
-                            <div class="w-2 h-2 rounded-full bg-primary"></div>
-                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point1">تزامن لحظي</span>
-                        </div>
-                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
-                            <div class="w-2 h-2 rounded-full bg-success"></div>
-                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point2">عمل دون اتصال PWA</span>
-                        </div>
-                        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm">
-                            <div class="w-2 h-2 rounded-full bg-secondary"></div>
-                            <span class="text-sm font-medium text-slate-700" data-i18n="mission_point3">تعدد العملات</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal visible">
-                    <!-- Image Placeholder Container -->
-                    <div class="img-placeholder min-h-[400px] rounded-2xl">
-                        <div class="relative z-10 text-center">
-                            <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
-                                <i data-lucide="target" class="w-10 h-10 text-primary"></i>
-                            </div>
-                            <p class="text-primary font-bold text-lg mb-1" data-i18n="placeholder_title">صورة توضيحية</p>
-                            <p class="text-slate-500 text-sm" data-i18n="placeholder_desc">سيتم استبدالها بتصميم معبر عن الرؤية</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner">
+            <div class="fv-row">
+              <div class="fv-card">
+                <div class="fv-card-label">الإيرادات الشهرية</div>
+                <div class="fv-card-val">$84.2k</div>
+                <div class="fv-card-bar"><div class="fv-card-bar-fill" style="width:72%"></div></div>
+              </div>
+              <div class="fv-card">
+                <div class="fv-card-label">المستخدمين النشطين</div>
+                <div class="fv-card-val">12,481</div>
+                <div class="fv-card-bar"><div class="fv-card-bar-fill" style="width:88%"></div></div>
+              </div>
             </div>
+            <div class="fv-card">
+              <div class="fv-card-label">النشاط الأخير</div>
+              <div class="fv-list" style="margin-top:8px">
+                <div class="fv-list-item"><span class="fv-list-name">تم مزامنة تقرير الربع الثالث</span><span class="fv-pill green">تم</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">مراجعة الفريق معلقة</span><span class="fv-pill blue">نشط</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">تصدير التحليلات</span><span class="fv-pill dim">في الانتظار</span></div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ==================== FUNCTIONAL MODULES SECTION ==================== -->
-    <section id="modules" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-                    <i data-lucide="layers" class="w-4 h-4"></i>
-                    <span data-i18n="modules_badge">الوظائف الأساسية</span>
-                </div>
-                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="modules_title">اقسام النظام المتكاملة</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="modules_subtitle">حلول شاملة تغطي كافة الجوانب التشغيلية لشركتك</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-                <!-- Module 1: Funds -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                            <i data-lucide="coins" class="w-6 h-6 text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod1_title">الصناديق والسيولة</h3>
-                            <p class="text-sm lg:text-[16px] text-primary/70  font-medium" data-i18n="mod1_subtitle">إدارة النقدية والبنوك</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>تتبع دقيق لحركات الدخول والخروج</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>نقل مرن للأموال بين الصناديق</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>تحكم متقدم بالعملات المتعددة</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Module 2: Ledger -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
-                            <i data-lucide="file-text" class="w-6 h-6 text-secondary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod2_title">دفتر الأستاذ</h3>
-                            <p class="text-sm lg:text-[16px] text-secondary/70 font-medium" data-i18n="mod2_subtitle">القيود المحاسبية</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
-                                <span>مراقبة العمليات الدائنة والمدينة</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
-                                <span>حساب آلي للأرصدة التراكمية</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"></i>
-                                <span>تسويات محاسبية سريعة وموثوقة</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Module 3: Business -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center">
-                            <i data-lucide="briefcase" class="w-6 h-6 text-success"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod3_title">الأعمال</h3>
-                            <p class="text-sm lg:text-[16px] text-success/70 font-medium" data-i18n="mod3_subtitle">المصروفات والإيرادات</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
-                                <span>تسجيل وتصنيف المصروفات والإيرادات</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
-                                <span>الربط المباشر مع المشاريع والإنتاج</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-success flex-shrink-0 mt-0.5"></i>
-                                <span>تحليل دقيق للربحية والاستهلاك</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Module 4: Projects -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
-                            <i data-lucide="clipboard-list" class="w-6 h-6 text-warning"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod4_title">المشاريع</h3>
-                            <p class="text-sm lg:text-[16px] text-warning/70 font-medium" data-i18n="mod4_subtitle">التكاليف والأرباح</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
-                                <span>حساب دقيق لتكاليف وأرباح المشاريع</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
-                                <span>تتبع حي لنسب الإنجاز</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-warning flex-shrink-0 mt-0.5"></i>
-                                <span>إدارة متكاملة للدفعات والمستخلصات</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Module 5: Shipping -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-alert/10 flex items-center justify-center">
-                            <i data-lucide="truck" class="w-6 h-6 text-alert"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod5_title">الشحن والحاويات</h3>
-                            <p class="text-sm lg:text-[16px] text-alert/70  font-medium" data-i18n="mod5_subtitle">اللوجستيات والجمارك</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
-                                <span>تتبع شامل للحاويات ومسار الشحنات</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
-                                <span>إدارة شفافة للمصاريف اللوجستية</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-alert flex-shrink-0 mt-0.5"></i>
-                                <span>حصر تفصيلي لتكاليف التخليص الجمركي</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Module 6: Production -->
-                <div class="module-card reveal visible">
-                    <div class="flex items-start gap-4 mb-4">
-                        <div class="feature-icon flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                            <i data-lucide="factory" class="w-6 h-6 text-primary"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg lg:text-[20px] font-bold text-slate-900" data-i18n="mod6_title">الإنتاج والتصنيع</h3>
-                            <p class="text-sm lg:text-[16px] text-primary/70  font-medium" data-i18n="mod6_subtitle">خطوط الإنتاج</p>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50/50 border border-slate-100 min-h-[8rem] rounded-xl p-4 flex flex-col justify-center">
-                        <ul class="space-y-2.5 text-start relative z-10">
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>احتساب آلي لتكاليف المواد الخام</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>مراقبة لحظية لخطوط الإنتاج</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-sm text-slate-700 font-medium">
-                                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-                                <span>تسعير دقيق للمبيعات والمنتجات النهائية</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <!-- Feature 2 -->
+      <div class="feature-row reverse">
+        <div class="feature-content reveal">
+          <div class="feature-number">02 — المشاريع والشحن والإنتاج</div>
+          <h3 class="feature-title">ربط العمليات التشغيلية المعقدة</h3>
+          <p class="feature-desc">اربط مصروفاتك مباشرة بمشروع معين، أو شحنة حاوية، أو خط إنتاج.   360 يمنحك رؤية شاملة لتكاليف المواد الخام والخدمات اللوجستية.</p>
+          <div class="feature-checklist">
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>تتبع تكاليف وأرباح المشاريع ونسب الإنجاز</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>إدارة الشحن وتتبع الحاويات والمصاريف اللوجستية</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>مراقبة خطوط الإنتاج وحساب تكلفة البضاعة</span></div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==================== APP ARCHITECTURE SECTION ==================== -->
-    <section id="architecture" class="py-12 sm:py-20 lg:py-28 bg-surface relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-16 reveal visible">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success text-sm font-semibold mb-4">
-                    <i data-lucide="server" class="w-4 h-4"></i>
-                    <span data-i18n="arch_badge">البنية التقنية</span>
-                </div>
-                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="arch_title">هيكلية التطبيق</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="arch_subtitle">نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط شركتك</p>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner">
+            <div class="fv-card">
+              <div class="fv-card-label">الأتمتة النشطة</div>
+              <div class="fv-list" style="margin-top:8px">
+                <div class="fv-list-item"><span class="fv-list-name">الملخص الأسبوعي ← Slack</span><span class="fv-pill green">قيد التشغيل</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">تم تقييم العميل ← تنبيه المبيعات</span><span class="fv-pill green">قيد التشغيل</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">استحقاق الفاتورة ← تنبيه المدير المالي</span><span class="fv-pill blue">نشط</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">مزامنة التقارير ← Drive</span><span class="fv-pill dim">متوقف مؤقتاً</span></div>
+              </div>
             </div>
-
-            <div class="grid gap-8 lg:gap-12 items-start">
-                <!-- Architecture Slider -->
-                <div class="reveal visible w-full">
-                    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-soft relative overflow-hidden flex flex-col items-center">
-                        <!-- Dynamic Title and Description -->
-                        <div class="text-center mb-1 h-20 w-full">
-                            <h3 id="arch-slider-title" class="text-[20px] lg:text-[31px] font-medium text-secondary/90  mb-1 lg:mb-6 transition-opacity duration-300">الصناديق والسيولة</h3>
-                            <p id="arch-slider-desc" class="text-slate-600 text-sm lg:text-[20px] transition-opacity duration-300">إدارة النقدية والبنوك وتتبع حركات الدخول والخروج</p>
-                        </div>
-
-                        <!-- Frames Container -->
-                        <div class="relative flex flex-col items-center justify-center w-full max-w-6xl mx-auto gap-8 lg:gap-16 mt-4">
-
-                            <!-- Top Row: Desktop Frame -->
-                            <div class="relative w-full max-w-5xl mx-auto flex justify-center z-0">
-                                <!-- PNG Desktop Frame -->
-                                <img src="img/laptop.png" class="relative z-10 w-full h-auto drop-shadow-2xl pointer-events-none" alt="Desktop Frame">
-                                <!-- Content inside Desktop -->
-                                <!-- Tuned percentages: adjust these if the screen doesn't fit the frame perfectly -->
-                                <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 8%; left: 11%; width: 78%; height: 78%;">
-                                    <img id="arch-slider-desktop-img" src="img/2-d.png" alt="Desktop Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
-                                </div>
-                            </div>
-
-                            <!-- Bottom Row: Tablet (Right) & Phone (Left) in RTL -->
-                            <div class="flex flex-row justify-center items-center gap-6 sm:gap-16 w-full mx-auto z-10">
-                                <!-- Tablet Frame (Right in RTL because it's the first element) -->
-                                <div class="relative h-[250px] sm:h-[450px] lg:h-[600px] flex-shrink-0">
-                                    <img src="img/Tablet.png" class="relative z-10 h-full w-auto drop-shadow-2xl pointer-events-none" alt="Tablet Frame">
-                                    <!-- Tablet Screen -->
-                                    <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 8%; left: 6%; width: 88%; height: 84%;">
-                                        <img id="arch-slider-tablet-img" src="img/2-t.png" alt="Tablet Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
-                                    </div>
-                                </div>
-
-                                <div class="relative h-[250px] sm:h-[450px] lg:h-[600px] flex-shrink-0">
-                                    <img src="img/phone.png" class="relative z-10 h-full w-auto   pointer-events-none" alt="Mobile Frame">
-                                    <!-- Mobile Screen -->
-                                    <div class="absolute z-0 bg-slate-100 overflow-hidden" style="top: 2%; left: 4%; width: 92%; height: 96%;">
-                                        <img id="arch-slider-mobile-img" src="img/2-m.png" alt="Mobile Screenshot" class="w-full h-full object-cover transition-opacity duration-500">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dots Indicators -->
-                        <div class="flex justify-center gap-2 mt-8 z-20" id="arch-slider-dots">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slider Script -->
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const slides = [
-                            { title: 'الصناديق والسيولة', desc: 'إدارة النقدية والبنوك وتتبع حركات الدخول والخروج', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
-                            { title: 'دفتر الأستاذ', desc: 'تتبع العمليات الدائنة والمدينة وإجراء التسويات المحاسبية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
-                            { title: 'إدارة الأعمال', desc: 'تسجيل المصروفات والإيرادات المستقلة والمباشرة', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
-                            { title: 'إدارة المشاريع', desc: 'حساب تكاليف المشاريع وأرباحها وتتبع نسب الإنجاز', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
-                            { title: 'الشحن والخدمات', desc: 'تتبع الحاويات والشحنات والمصاريف اللوجستية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' },
-                            { title: 'الإنتاج والتصنيع', desc: 'مراقبة خطوط الإنتاج والعمليات التصنيعية', imgD: 'img/2-d.png', imgT: 'img/2-t.png', imgM: 'img/2-m.png' }
-                        ];
-
-                        let currentIndex = 0;
-                        const titleEl = document.getElementById('arch-slider-title');
-                        const descEl = document.getElementById('arch-slider-desc');
-                        const imgDEl = document.getElementById('arch-slider-desktop-img');
-                        const imgTEl = document.getElementById('arch-slider-tablet-img');
-                        const imgMEl = document.getElementById('arch-slider-mobile-img');
-                        const dotsContainer = document.getElementById('arch-slider-dots');
-
-                        // Create dots
-                        slides.forEach((_, idx) => {
-                            const dot = document.createElement('button');
-                            dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-primary w-4' : 'bg-slate-300'}`;
-                            dot.onclick = () => goToSlide(idx);
-                            dotsContainer.appendChild(dot);
-                        });
-
-                        function updateDots() {
-                            Array.from(dotsContainer.children).forEach((dot, idx) => {
-                                dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-primary w-4' : 'bg-slate-300 hover:bg-slate-400'}`;
-                            });
-                        }
-
-                        function goToSlide(idx) {
-                            currentIndex = idx;
-                            const slide = slides[currentIndex];
-
-                            // Fade out
-                            titleEl.style.opacity = 0;
-                            descEl.style.opacity = 0;
-                            imgDEl.style.opacity = 0;
-                            imgTEl.style.opacity = 0;
-                            imgMEl.style.opacity = 0;
-
-                            setTimeout(() => {
-                                titleEl.textContent = slide.title;
-                                descEl.textContent = slide.desc;
-                                imgDEl.src = slide.imgD;
-                                imgTEl.src = slide.imgT;
-                                imgMEl.src = slide.imgM;
-                                updateDots();
-
-                                // Fade in
-                                titleEl.style.opacity = 1;
-                                descEl.style.opacity = 1;
-                                imgDEl.style.opacity = 1;
-                                imgTEl.style.opacity = 1;
-                                imgMEl.style.opacity = 1;
-                            }, 300);
-                        }
-
-                        // Auto play
-                        setInterval(() => {
-                            goToSlide((currentIndex + 1) % slides.length);
-                        }, 3000);
-                    });
-                </script>
-
-                <!-- Architecture Description with Image Placeholders -->
-                <div class="space-y-8 reveal visible">
-                    <div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="arch_details_title">بنية برمجية متقدمة</h3>
-                        <p class="text-slate-600 leading-relaxed mb-6" data-i18n="arch_details_desc">يعتمد التطبيق على هيكلية برمجية تفصل النظام إلى وحدات متكاملة (Modules)، كل وحدة تعمل باستقلالية كاملة مع إمكانية الربط الذكي بينها.</p>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="img-placeholder h-40 rounded-xl">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="cpu" class="w-8 h-8 text-primary/40 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_arch1">Supabase Backend</span>
-                            </div>
-                        </div>
-                        <div class="img-placeholder h-40 rounded-xl">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="puzzle" class="w-8 h-8 text-secondary/40 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_arch2">RBAC Security</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="bg-white rounded-xl p-6 border border-slate-200">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
-                                <i data-lucide="smartphone" class="w-5 h-5 text-secondary"></i>
-                            </div>
-                            <h4 class="font-bold text-slate-900" data-i18n="arch_feature2">تصميم متجاوب ومريح</h4>
-                        </div>
-                        <p class="text-sm text-slate-600" data-i18n="arch_feature2_desc">واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي المريح للعين.</p>
-                    </div>
-                </div>
+            <div class="fv-row">
+              <div class="fv-card fv-wide">
+                <div class="fv-card-label">الساعات الموفرة هذا الشهر</div>
+                <div class="fv-card-val">148 ساعة</div>
+                <div class="fv-card-bar"><div class="fv-card-bar-fill" style="width:91%"></div></div>
+              </div>
+              <div class="fv-card">
+                <div class="fv-card-label">التدفقات</div>
+                <div class="fv-card-val">24</div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ==================== COMPETITIVE ADVANTAGES ==================== -->
-    <section id="about" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-50"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
-                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="why_title">لماذا توطين 360؟</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="why_subtitle">نقاط القوة التنافسية و قيم التطبيق المضافة </p>
-            </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-8 stagger-children">
-                <!-- Card 1: Sync & Security -->
-                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-success/20 hover:shadow-glow transition-all duration-500">
-                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-success/10 flex items-center justify-center group-hover:bg-success/20 transition-colors">
-                        <i data-lucide="cloud" class="w-6 h-6 sm:w-10 sm:h-10 text-success"></i>
-                    </div>
-                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why3_title">تزامن لحظي وأمان</h3>
-                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why3_desc">نظام سحابي متطور يضمن تزامن البيانات في الوقت الفعلي لجميع أعضاء الفريق، مع نظام صلاحيات دقيق يضمن أمان وخصوصية المعلومات.</p>
-                </div>
-                <!-- Card 2: Multi-currency -->
-                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-alert/20 hover:shadow-glow transition-all duration-500">
-                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-alert/10 flex items-center justify-center group-hover:bg-alert/20 transition-colors">
-                        <i data-lucide="coins" class="w-6 h-6 sm:w-10 sm:h-10 text-alert"></i>
-                    </div>
-                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why4_title">تعدد العملات الذكي</h3>
-                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why4_desc">نظام متكامل لتتبع وإدارة أسعار الصرف والفروقات المالية بين العملات المختلفة بذكاء.</p>
-                </div>
-                <!-- Card 3: Three Languages -->
-                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-primary/20 hover:shadow-glow transition-all duration-500">
-                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <i data-lucide="globe" class="w-6 h-6 sm:w-10 sm:h-10 text-primary"></i>
-                    </div>
-                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why5_title">ثلاث لغات</h3>
-                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why5_desc">يدعم التطبيق حالياً اللغات العربية والإنجليزية والتركية بشكل كامل، مع خطة للتوسع ودعم لغات إضافية قريباً لتلبية احتياجاتك المتزايدة.</p>
-                </div>
-                <!-- Card 4: Flexible Architecture -->
-                <div class="reveal visible group text-center p-4 sm:p-8 rounded-xl sm:rounded-2xl bg-surface border border-slate-100 hover:border-secondary/20 hover:shadow-glow transition-all duration-500">
-                    <div class="w-12 h-12 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-xl sm:rounded-2xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                        <i data-lucide="blocks" class="w-6 h-6 sm:w-10 sm:h-10 text-secondary"></i>
-                    </div>
-                    <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-1.5 sm:mb-3" data-i18n="why6_title">بنية وحدات مرنة</h3>
-                    <p class="text-[13px] sm:text-base text-slate-600 leading-relaxed" data-i18n="why6_desc">نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط الشركة Scalability.</p>
-                </div>
-            </div>
+      <!-- Feature 3 -->
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <div class="feature-number">03 — التقارير والمستندات</div>
+          <h3 class="feature-title">فواتير احترافية وتقارير دقيقة</h3>
+          <p class="feature-desc">ولد فواتير وعروض أسعار احترافية بضغطة زر. استخرج تقارير مالية شاملة تدعم المحاسبة الخارجية وتسهل عملية صنع القرار.</p>
+          <div class="feature-checklist">
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>توليد فواتير وعروض أسعار ومستندات تحصيل</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>تقارير أداء وموازنات وتلخيص نشاط مالي</span></div>
+            <div class="feature-check"><div class="check-icon"><i data-lucide="check" width="12" height="12"></i></div><span>استيراد وتصدير البيانات بدعم كامل للمحاسبة</span></div>
+          </div>
         </div>
-    </section>
-
-    <!-- ==================== DASHBOARD PREVIEW / REPORTS SECTION ==================== -->
-    <section class="py-12 sm:py-20 lg:py-28 bg-surface relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div class="order-2 lg:order-1 reveal visible">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="img-placeholder h-48 rounded-xl">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="pie-chart" class="w-10 h-10 text-primary/30 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report1">تقرير الأداء المالي</span>
-                            </div>
-                        </div>
-                        <div class="img-placeholder h-48 rounded-xl mt-8">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="bar-chart" class="w-10 h-10 text-secondary/30 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report2">تحليل المشاريع</span>
-                            </div>
-                        </div>
-                        <div class="img-placeholder h-48 rounded-xl -mt-4">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="receipt" class="w-10 h-10 text-success/30 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report3">فاتورة تجارية</span>
-                            </div>
-                        </div>
-                        <div class="img-placeholder h-48 rounded-xl mt-4">
-                            <div class="relative z-10 text-center">
-                                <i data-lucide="monitor" class="w-10 h-10 text-warning/30 mx-auto mb-2"></i>
-                                <span class="text-xs text-slate-400 font-medium" data-i18n="placeholder_report4">لوحة التحكم</span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="feature-visual reveal reveal-delay-1">
+          <div class="feature-visual-inner">
+            <div class="fv-row">
+              <div class="fv-card fv-wide">
+                <div class="fv-card-label">متصل الآن</div>
+                <div style="display:flex;gap:-4px;margin-top:6px">
+                  <div style="width:28px;height:28px;border-radius:50%;background:var(--accent);border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">أ</div>
+                  <div style="width:28px;height:28px;border-radius:50%;background:var(--accent-mid);border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-6px">ك</div>
+                  <div style="width:28px;height:28px;border-radius:50%;background:#5A6B66;border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-6px">م</div>
+                  <div style="width:28px;height:28px;border-radius:50%;background:var(--bg-alt);border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text-2);margin-left:-6px">+5</div>
                 </div>
-                <div class="order-1 lg:order-2 reveal visible">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-warning/10 text-warning text-sm font-semibold mb-6">
-                        <i data-lucide="bar-chart" class="w-4 h-4"></i>
-                        <span data-i18n="reports_badge">التقارير والمستندات</span>
-                    </div>
-                   <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-3 sm:mb-6 leading-[1.4] lg:leading-[1.1] pt-2" data-i18n="reports_title">
-    تقارير شاملة<br>
-    <span class="gradient-text inline-block mt-1 sm:mt-2">ومستندات احترافية</span>
-</h2>
-                    <p class="text-base sm:text-lg font-medium text-slate-600 leading-relaxed mb-6" data-i18n="reports_desc">توليد فواتير وعروض أسعار احترافية، استخراج تقارير الأداء والموازنات، واستيراد/تصدير البيانات لدعم المحاسبة الخارجية.</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
-                            </div>
-                            <span class="text-slate-700
-" data-i18n="reports_point1">تقارير الأداء المالي لحظية</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
-                            </div>
-                            <span class="text-slate-700
-" data-i18n="reports_point2">فواتير وعروض أسعار احترافية</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
-                            </div>
-                            <span class="text-slate-700
-" data-i18n="reports_point3">استيراد وتصدير البيانات</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/10 flex items-center justify-center mt-0.5">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-success"></i>
-                            </div>
-                            <span class="text-slate-700
-" data-i18n="reports_point4">تلخيص النشاط المالي والتشغيلي</span>
-                        </li>
-                    </ul>
-                </div>
+              </div>
+              <div class="fv-card">
+                <div class="fv-card-label">المهام المفتوحة</div>
+                <div class="fv-card-val">37</div>
+              </div>
             </div>
+            <div class="fv-card">
+              <div class="fv-card-label">التعليقات الأخيرة</div>
+              <div class="fv-list" style="margin-top:8px">
+                <div class="fv-list-item"><span class="fv-list-name">أليكس ← تم تحديث مخطط الربع الثالث</span><span class="fv-pill green">تم الحل</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">كيم ← المراجعة مطلوبة</span><span class="fv-pill blue">مفتوح</span></div>
+                <div class="fv-list-item"><span class="fv-list-name">مايا ← تم الاعتماد والشحن</span><span class="fv-pill green">تم</span></div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ==================== HOW TO USE ==================== -->
-    <section id="how-to-use" class="py-12 sm:py-20 bg-slate-50 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMwRjRFQTMiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4 sm:mb-6">
-                    <i data-lucide="play-circle" class="w-4 h-4"></i>
-                    <span data-i18n="how_to_badge">دليل الاستخدام</span>
-                </div>
-                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="how_to_title">كيف تستخدم التطبيق</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="how_to_subtitle">شاهد هذا الفيديو التعريفي لتتعرف على واجهة التطبيق وكيفية البدء في إدارة أعمالك بكل سهولة.</p>
-            </div>
-
-            <div class="max-w-4xl mx-auto reveal visible">
-                <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden   border-4 border-white group">
-                    <div class="absolute inset-0 bg-slate-900/10 pointer-events-none group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                    <div class="relative w-full pb-[56.25%] bg-slate-100">
-                        <iframe
-                            class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/zPwP8-0P-dI"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-30 blur-2xl -z-10"></div>
-                </div>
-            </div>
+  <!-- ── 6. STATS ── 
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-rule"></div>
+          <div class="stat-value"><span class="stat-num" data-target="50">0</span><span class="stat-suffix"> ألف+</span></div>
+          <div class="stat-label">فريق حول العالم</div>
+          <div class="stat-sublabel">في أكثر من 80 دولة</div>
         </div>
-    </section>
-
-    <!-- ==================== CTA BANNER ==================== -->
-    <section class="py-16 bg-primary relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0aDR2NGgtNHpNMjAgMjBoNHY0aC00eiIvPjwvZz48L2c+PC9zdmc+')]""></div>
-        <div class="absolute top-0 start-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 end-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
-        <div class="max-w-4xl mx-auto px-4 text-center relative reveal visible">
-            <h2 class="text-2xl sm:text-4xl lg:text-[34px] font-bold text-white mb-2 sm:mb-4" data-i18n="cta_title">جهز عملك للمستقبل</h2>
-            <p class="text-blue-100 text-base sm:text-lg font-medium mb-5 max-w-2xl mx-auto" data-i18n="cta_subtitle">انضم إلى المئات الشركات التي تثق بتوطين 360 لإدارة مواردها. ابدأ رحلتك نحو التحول الرقمي اليوم.</p>
-           <!-- <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white text-primary rounded-xl font-bold text-base sm:text-lg shadow-xl hover:bg-blue-50 transition-all">
-                <span data-i18n="cta_button">تواصل معنا</span>
-                <i data-lucide="play-circle" class="w-5 h-5"></i>
-            </a>-->
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-rule"></div>
+          <div class="stat-value"><span class="stat-num" data-target="34">0</span><span class="stat-suffix">%</span></div>
+          <div class="stat-label">متوسط زيادة الإنتاجية</div>
+          <div class="stat-sublabel">تم قياسها في أول 30 يوماً</div>
         </div>
-    </section>
-
-    <!-- ==================== PRICING SECTION ==================== -->
-    <section id="pricing" class="py-12 sm:py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal visible">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
-                    <i data-lucide="tag" class="w-4 h-4"></i>
-                    <span data-i18n="pricing_badge">خطط الاشتراك</span>
-                </div>
-                <h2 class="text-2xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 mb-2 sm:mb-4" data-i18n="pricing_title">اختر الخطة المناسبة لنمو أعمالك</h2>
-                <p class="text-base sm:text-lg font-medium text-slate-600" data-i18n="pricing_subtitle">حلول مرنة تناسب الشركات الناشئة والمؤسسات الكبرى</p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 sm:gap-8 max-w-5xl mx-auto">
-                <!-- Free Plan -->
-                <div class="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all reveal visible">
-                    <div class="mb-4 sm:mb-8 text-start">
-                        <h3 class="text-sm sm:text-xl font-bold text-slate-900 mb-1 sm:mb-2" data-i18n="free_title">الخطة المجانية</h3>
-                        <p class="text-[10px] sm:text-sm text-slate-500 mb-3 sm:mb-6 leading-tight" data-i18n="free_desc">للأفراد والشركات الناشئة</p>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-xl sm:text-4xl font-extrabold text-slate-900">0</span>
-                            <span class="text-[10px] sm:text-base text-slate-500 font-medium" data-i18n="currency_month">ريال / شهر</span>
-                        </div>
-                    </div>
-                    <ul class="space-y-2 sm:space-y-4 mb-4 sm:mb-8 text-start">
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-600 text-[11px] sm:text-sm">
-                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-success flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="free_feat1">إدارة الصناديق والسيولة</span>
-                        </li>
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-600 text-[11px] sm:text-sm">
-                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-success flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="free_feat2">دفتر الأستاذ والقيود</span>
-                        </li>
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-400 text-[11px] sm:text-sm opacity-60 line-through">
-                            <i data-lucide="x" class="w-3 h-3 sm:w-4 sm:h-4 text-slate-300 flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="free_feat3">الشحن والحاويات</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="block w-full py-2 sm:py-4 px-2 sm:px-6 text-center bg-slate-100 text-slate-700 rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-base hover:bg-slate-200 transition-colors" data-i18n="free_btn">ابدأ مجاناً</a>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="relative bg-slate-900 rounded-2xl sm:rounded-3xl p-3 sm:p-8 border-2 border-primary shadow-2xl reveal visible z-10">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-0.5 sm:px-4 sm:py-1 rounded-full text-[8px] sm:text-[10px] font-bold uppercase tracking-wider whitespace-nowrap" data-i18n="pro_badge">الأكثر طلباً</div>
-                    <div class="mb-4 sm:mb-8 text-start">
-                        <h3 class="text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2" data-i18n="pro_title">خطة برو (Pro)</h3>
-                        <p class="text-[10px] sm:text-sm text-slate-400 mb-3 sm:mb-6 leading-tight" data-i18n="pro_desc">للمؤسسات والتحليل الكامل</p>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-xl sm:text-4xl font-extrabold text-white">30$</span>
-                            <span class="text-[10px] sm:text-base text-slate-400 font-medium" data-i18n="currency_year">سنوياً</span>
-                        </div>
-                    </div>
-                    <ul class="space-y-2 sm:space-y-4 mb-4 sm:mb-8 text-start">
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
-                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="pro_feat1">كل مميزات المجانية</span>
-                        </li>
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
-                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="pro_feat2">الشحن والحاويات</span>
-                        </li>
-                        <li class="flex items-start gap-1.5 sm:gap-3 text-slate-300 text-[11px] sm:text-sm">
-                            <i data-lucide="check" class="w-3 h-3 sm:w-5 sm:h-5 text-primary flex-shrink-0 mt-0.5"></i>
-                            <span data-i18n="pro_feat3">الإنتاج والمواد الخام</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="block w-full py-2 sm:py-4 px-2 sm:px-6 text-center bg-primary text-white rounded-lg sm:rounded-xl font-bold text-[11px] sm:text-base hover:bg-[#0d438c] shadow-lg shadow-primary/30 transition-all" data-i18n="pro_btn">اطلب سعراً</a>
-                </div>
-            </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-rule"></div>
+          <div class="stat-value"><span class="stat-num" data-target="99" data-decimal="9">0</span><span class="stat-suffix">%</span></div>
+          <div class="stat-label">اتفاقية مستوى الخدمة</div>
+          <div class="stat-sublabel">مضمونة ومراقبة باستمرار</div>
         </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer id="contact" class="bg-slate-900 text-slate-300 pt-16 pb-20 ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 mb-5 p-5">
-                <div class="lg:col-span-1">
-                    <div class="flex items-center gap-3 mb-2 sm:mb-4">
-                        <img src="logo.jpeg" alt="Tawteen 360" class="w-10 h-10 rounded-xl object-contain shadow-sm">
-                        <span class="text-xl font-bold text-white">توطين 360</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="footer_desc">نظام متكامل لإدارة المؤسسات يجمع بين القوة والبساطة لمساعدتك على تنمية عملك.</p>
-
-                </div>
-               <!-- <div>
-                    <h4 class="text-white font-bold mb-4" data-i18n="footer_links">وصول سريع</h4>
-                    <ul class="space-y-2 sm:space-y-3 text-sm">
-                        <li>
-                            <a href="#features" class="group flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
-                                <span data-i18n="nav_features">المميزات</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#modules" class="group flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
-                                <span data-i18n="nav_modules">الاقسام</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#architecture" class="group flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
-                                <span data-i18n="nav_architecture">البنية</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#about" class="group flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="chevron-right" class="w-3 h-3 text-primary transition-transform group-hover:translate-x-1"></i>
-                                <span data-i18n="nav_about">عن التطبيق</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>-->
-                <div>
-                    <h4 class="text-white font-bold mb-4" data-i18n="footer_contact">تواصل معنا</h4>
-                    <ul class="space-y-4 sm:space-y-3 text-sm">
-                        <li>
-                            <a href="mailto:info@tawteen360.com" class="flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="mail" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                                <span dir="ltr">info@tawteen360.com</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tel:+966500000000" class="flex items-center gap-2 hover:text-white transition-colors">
-                                <i data-lucide="phone" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                                <span dir="ltr">+966 50 000 0000</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://wa.me/966500000000" class="flex items-center gap-2 hover:text-white transition-colors" target="_blank">
-                                <i data-lucide="message-circle" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                                <span dir="ltr" data-i18n="footer_whatsapp">واتساب (+966 50 000 0000)</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4" data-i18n="footer_follow">تابعنا</h4>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white transition-all" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-black hover:text-white transition-all" aria-label="X (Twitter)">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.294 19.497h2.039L6.486 3.24H4.298L17.607 20.65z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#000000] hover:text-white transition-all" aria-label="TikTok">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-[#FF0000] hover:text-white transition-all" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white transition-all" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441c.795 0 1.439-.645 1.439-1.441s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-slate-500" data-i18n="footer_rights">جميع الحقوق محفوظة © 2026 توطين 360</p>
-                <div class="flex gap-6 text-sm text-slate-500">
-                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_privacy">سياسة الخصوصية</a>
-                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_terms">شروط الاستخدام</a>
-                </div>
-            </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-rule"></div>
+          <div class="stat-value"><span class="stat-num" data-target="18">0</span><span class="stat-suffix"> ساعة</span></div>
+          <div class="stat-label">الوقت الموفر لكل فريق أسبوعياً</div>
+          <div class="stat-sublabel">في المتوسط عبر جميع الباقات</div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>-->
 
-    <!-- ==================== AI CHATBOT WIDGET ==================== -->
-    <div class="chat-widget">
-        <!-- Chat Window -->
-        <div id="chat-window" class="chat-window closed mb-4">
-            <!-- Header -->
-            <div class="bg-primary p-4 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold text-sm" data-i18n="chat_title">مساعد توطين 360</h3>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
-                            <span class="text-blue-100 text-xs" data-i18n="chat_status">متصل الآن</span>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                    <i data-lucide="x" class="w-5 h-5 text-white"></i>
-                </button>
-            </div>
-
-            <!-- Messages -->
-            <div id="chat-messages" class="chat-messages bg-slate-50">
-                <div class="chat-bubble bot" data-i18n="chat_welcome">
-                    مرحباً! أنا مساعد توطين 360 الذكي. يمكنك سؤالي عن أي شيء يتعلق بالتطبيق، الاقسام، المميزات، أو كيفية البدء. كيف يمكنني مساعدتك اليوم؟
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="px-4 py-2 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto">
-                <button onclick="sendQuickMessage('ما هو توطين 360؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick1">ما هو توطين 360؟</button>
-                <button onclick="sendQuickMessage('ما هي الاقسام المتاحة؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick2">الاقسام المتاحة</button>
-                <button onclick="sendQuickMessage('كيف أبدأ؟')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs text-slate-600 hover:border-primary hover:text-primary transition-colors" data-i18n="chat_quick3">كيف أبدأ؟</button>
-            </div>
-
-            <!-- Input -->
-            <div class="chat-input-area flex items-center gap-2">
-                <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." class="flex-1 px-4 py-2.5 bg-slate-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 text-slate-800" data-i18n-placeholder="chat_placeholder" onkeypress="if(event.key==='Enter')sendMessage()">
-                <button onclick="sendMessage()" class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center hover:bg-[#0d438c] transition-colors flex-shrink-0">
-                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
-                </button>
-            </div>
+  <!-- ── 7. PRICING ── -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <div class="section-label reveal">الأسعار</div>
+        <h2 class="section-title reveal reveal-delay-1">تسعير بسيط وشفاف</h2>
+        <p class="section-sub reveal reveal-delay-2">لا رسوم مخفية. لا تكاليف مفاجئة. يمكنك الإلغاء في أي وقت.</p>
+      </div>
+      <div class="pricing-toggle reveal">
+        <span class="toggle-label active" id="monthlyLabel">شهرياً</span>
+        <div class="toggle-switch" id="pricingToggle" role="switch" aria-checked="false" tabindex="0" aria-label="تبديل إلى الفوترة السنوية"></div>
+        <span class="toggle-label" id="annualLabel">سنوياً</span>
+        <div class="toggle-badge">وفر 35%</div>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-tier">الباقة الأساسية</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" id="price-starter">20</span>
+            <span class="price-period">&nbsp;/ شهرياً</span>
+          </div>
+          <div class="price-annual-note" id="annual-note-starter">&nbsp;</div>
+          <p class="pricing-desc">للأفراد والفرق الصغيرة التي تبدأ في تنظيم سير عملها.</p>
+          <div class="pricing-divider"></div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>حتى 5 أعضاء للفريق</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>10 لوحات بيانات نشطة</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>أتمتة أساسية (50/شهر)</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>سجل بيانات لمدة 7 أيام</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>دعم عبر البريد الإلكتروني</span></div>
+          </div>
+          <a href="#" class="pricing-cta">ابدأ التجربة المجانية</a>
         </div>
+        <div class="pricing-card featured reveal reveal-delay-1">
+          <div class="pricing-badge">الأكثر شيوعاً</div>
+          <div class="pricing-tier">الباقة الاحترافية</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" id="price-pro">60</span>
+            <span class="price-period">&nbsp;/ شهرياً</span>
+          </div>
+          <div class="price-annual-note" id="annual-note-pro">&nbsp;</div>
+          <p class="pricing-desc">للفرق المتنامية التي تحتاج لأتمتة قوية وتقارير متقدمة.</p>
+          <div class="pricing-divider"></div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>حتى 25 عضو للفريق</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>لوحات بيانات غير محدودة</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>أتمتة متقدمة (غير محدودة)</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>سجل بيانات لمدة 90 يوماً</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>دعم أولي عبر الدردشة</span></div>
+            <div class="pricing-feature"><div class="pricing-check"><i data-lucide="check" width="14" height="14"></i></div><span>وصول لتطبيق الهاتف</span></div>
+          </div>
+          <a href="#" class="pricing-cta">ابدأ التجربة المجانية</a>
+        </div>
+         
+      </div>
+    </div>
+  </section>
 
-        <!-- Toggle Button -->
-<button onclick="toggleChat()" id="chat-toggle" class="chat-toggle-btn lg:text-[16px]">
-
-    <i id="chat-icon-open" data-lucide="bot" class="w-[18px] h-[18px] lg:w-6 lg:h-6"></i>
 
 
-    <i id="chat-icon-close" data-lucide="chevron-down" class="w-[18px] h-[18px] lg:w-6 lg:h-6 hidden"></i>
+  <!-- ── 11. CTA BANNER ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="cta-content">
+          <div class="cta-label">✦ وصول أكبر أينما تكون</div>
+          <h2 class="cta-title">تطبيق 360<br><em>في كل أجهزتك</em></h2>
+          <p class="cta-sub">تصفح ، تابع ، و قم بادخال عملياتك المالية على مختلف اجهزتك بكل أنواعها ، مع تزامن بيانات لحظي</p>
+        </div>
+         <div class="devices-grid">
+        <!-- Computers -->
+        <div class="device-card reveal">
+          <div class="device-icon">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <h3 class="device-name">الحواسيب</h3>
+        </div>
+        <!-- Android -->
+        <div class="device-card reveal reveal-delay-1">
+          <div class="device-icon">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor"><path d="M17.523 15.3414C17.523 15.8643 17.1001 16.2872 16.5772 16.2872C16.0543 16.2872 15.6314 15.8643 15.6314 15.3414C15.6314 14.8185 16.0543 14.3956 16.5772 14.3956C17.1001 14.3956 17.523 14.8185 17.523 15.3414ZM8.3686 16.2872C8.89146 16.2872 9.31438 15.8643 9.31438 15.3414C9.31438 14.8185 8.89146 14.3956 8.3686 14.3956C7.84573 14.3956 7.42281 14.8185 7.42281 15.3414C7.42281 15.8643 7.84573 16.2872 8.3686 16.2872ZM17.915 11.6046L19.2613 9.27306C19.3908 9.04873 19.3141 8.76101 19.0898 8.6315C18.8655 8.502 18.5778 8.57868 18.4483 8.80302L17.0864 11.1612C15.5866 10.4754 13.882 10.0964 11.9708 10.0964C10.0596 10.0964 8.35496 10.4754 6.85523 11.1612L5.4933 8.80302C5.36379 8.57868 5.07607 8.502 4.85174 8.6315C4.62741 8.76101 4.55073 9.04873 4.68024 9.27306L6.02657 11.6046C3.60636 12.9238 1.97083 15.4713 1.97083 18.4116H21.9708C21.9708 15.4713 20.3353 12.9238 17.915 11.6046Z"/></svg>
+          </div>
+          <h3 class="device-name">هواتف الاندرويد</h3>
+        </div>
+        <!-- Apple -->
+        <div class="device-card reveal reveal-delay-2">
+          <div class="device-icon">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor"><path d="M17.05 20.28c-.96.95-2.06 1.72-3.26 1.72-1.2 0-1.6-.74-3.08-.74s-1.95.72-3.08.72c-1.12 0-2.3-.8-3.32-1.82-2.1-2.12-3.3-6.02-3.3-8.82 0-4.38 2.72-6.72 5.32-6.72 1.38 0 2.5.94 3.32.94.82 0 2.1-.96 3.64-.96 1.08 0 3.8.4 5.34 2.66-.12.08-3.18 1.86-3.18 5.64 0 3.75 3.32 5.12 3.34 5.14-.02.04-.54 1.78-1.78 3.2zm-4.32-16.5c0-1.92 1.55-3.48 3.48-3.48.06 0 .12 0 .18.02-.08 1.96-1.62 3.52-3.48 3.52-.06 0-.12 0-.18-.06z"/></svg>
+          </div>
+          <h3 class="device-name">هواتف آبل</h3>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
 
-    <span>إسألني عن التطبيق</span>
-</button>
+ 
+
+  <!-- ── 10. FAQ ── -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-inner">
+        <div class="faq-sidebar reveal">
+          <div class="section-label">الأسئلة الشائعة</div>
+          <h2 class="section-title">أسئلة،<br><em>وإجاباتها</em></h2>
+          <p class="section-sub">لم تجد ما تبحث عنه؟ تواصل مع فريقنا على hello@clearwave.io — نرد خلال ساعتين.</p>
+          <button class="faq-toggle-all" id="faqToggleAll">
+            <span id="faqToggleIcon"><i data-lucide="plus" width="14" height="14"></i></span> توسيع الكل</button>
+        </div>
+        <div class="faq-list reveal reveal-delay-1" id="faqList">
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              هل توجد تجربة مجانية؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">نعم — كل باقة تبدأ بتجربة مجانية لمدة 14 يوماً، دون الحاجة لبطاقة ائتمان. ستحصل على وصول كامل لجميع الميزات في الفئة التي تختارها حتى تتمكن من التقييم الفعلي قبل الالتزام.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              كيف يعمل التسعير للفرق الكبيرة؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">الباقة الأساسية والاحترافية هي لكل مساحة عمل، وليس لكل مقعد — لذا لن ترى فواتير مفاجئة مع نمو فريقك. باقات المؤسسات يتم تسعيرها بشكل مخصص بناءً على احتياجاتك ومدة العقد.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              هل يمكنني نقل البيانات من أداة أخرى؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">نحن ندعم استيراد CSV والترحيل المباشر من Notion و Airtable و Asana و Trello. يحصل عملاء باقة المؤسسات على متخصص ترحيل مخصص يتولى العملية بالكامل نيابة عنك.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              ماذا يعني ضمان استقرار الخدمة بنسبة 99.9%؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">هذا يعني أن   360 ملتزم تعاقدياً بأقل من 8.7 ساعة من التوقف سنوياً. نحن نراقب التوافر على مدار الساعة عبر بنية سحابية متينة، ونقدم تعويضات تلقائياً في حال مخالفة الضمان.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              هل بياناتي آمنة؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">  360 حاصل على شهادة SOC 2 Type II، ومتوافق مع معايير الأمان العالمية. يتم تشفير جميع البيانات وتخزينها سحابياً مع نظام صلاحيات صارم (RBAC) يضمن وصول الأشخاص المخولين فقط لبياناتك.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" tabindex="0" role="button" aria-expanded="false">
+              هل يمكنني الإلغاء في أي وقت؟
+              <div class="faq-icon"><i data-lucide="plus" width="14" height="14"></i></div>
+            </div>
+            <div class="faq-answer"><div class="faq-answer-inner">نعم. لا توجد عقود ملزمة في الباقات الشهرية. يمكنك الإلغاء من إعدادات حسابك في أي وقت ولن يتم محاسبتك مرة أخرى. الباقات السنوية غير قابلة للاسترداد ولكن يمكن إلغاؤها لوقف التجديد.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── 12. FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <img src="img/logo.jpg" class="custom-logo" alt="logo" />
+            <div class="logo-text">
+              <span>360</span>
+              <span class="brand-slogan" data-i18n="brand_slogan">نظامك المالي الشامل</span>
+            </div>
+          </a>
+
+          <p class="footer-brand-desc">النظام المتكامل لإدارة الأعمال الذي يمنحك رؤية 360 درجة لجميع التكاليف والأرباح من شاشة واحدة.</p>
+          <div class="footer-socials">
+            <a href="tel:+966000000000" class="social-btn" aria-label="اتصال هاتف">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <a href="https://wa.me/966000000000" class="social-btn" aria-label="واتساب">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.41.001 12.045a11.871 11.871 0 001.592 5.918L0 24l6.135-1.61a11.822 11.822 0 005.91 1.586h.005c6.637 0 12.048-5.41 12.051-12.047a11.816 11.816 0 00-3.536-8.451" /></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="فيس بوك">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="تطبيق اكس">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.901 1.153h3.68L14.54 12.035 24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.49h2.039L6.486 3.24H4.298l13.311 17.403z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="تيك توك">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2s0 .001 0 .001h-3.82v13.63a2.86 2.86 0 0 1-5.2 1.65 2.86 2.86 0 0 1 1.65-4.43c.26-.06.52-.09.79-.08V8.92a6.65 6.65 0 0 0-6.65 6.65c0 3.67 2.98 6.65 6.65 6.65a6.65 6.65 0 0 0 6.65-6.65V7.12a8.67 8.67 0 0 0 3.7 1.1v-1.53z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="يوتيوب">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="انستجرام">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          </div>
+        </div>        
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026   360. جميع الحقوق محفوظة.
+        </div>
+        <div class="footer-legal">
+          <a href="#">سياسة الخصوصية</a>
+          <a href="#">شروط الخدمة</a>
+          <a href="#">سياسة ملفات تعريف الارتباط</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- ==================== CHAT BOT BUTTON ==================== -->
+<a href="#" id="chatToggleBtn" class="chat-toggle-btn">
+    <i data-lucide="bot" class="btn-icon"></i>
+    <span>البوت المساعد</span>
+</a>
+
 
 <!-- ==================== DOWNLOAD APP BUTTON ==================== -->
-<a href="#download" class="download-toggle-btn lg:text-[16px]">
-
-
+<a href="#download" class="download-toggle-btn">
     <span data-i18n="download_app">حمل التطبيق</span>
-	 <i data-lucide="download" class="w-[16px] h-[16px] lg:w-6 lg:h-6"></i>
+    <i data-lucide="download" class="btn-icon"></i>
 </a>
-</div>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
-    <script>
-        // ==================== TRANSLATIONS ====================
-        const translations = {
-            ar: {
-                dir: 'rtl', font: 'font-ar',
-                brand: 'توطين 360', brand_slogan: 'نظامك المالي الشامل',
-                nav_features: 'المميزات', nav_modules: 'الاقسام', nav_architecture: 'البنية', nav_about: 'عن التطبيق', nav_contact: 'تواصل معنا', nav_cta: 'ابدأ الآن',
-                language: 'اللغة',
-                hero_badge: 'نظام ERP متكامل v3.2',
-                hero_title_1: 'نظام', hero_title_2: 'توطين 360', hero_title_3: 'المتكامل',
-                hero_subtitle: 'حلول ذكية لإدارة أعمالك المالية والمشاريع والشحن والإنتاج في منصة سحابية واحدة آمنة وموثوقة',
-                hero_cta_primary: 'ابدأ الآن مجاناً', hero_cta_secondary: 'اكتشف الاقسام',
-                hero_trust1: 'أمان بنكي', hero_trust2: 'سحابي 100%', hero_trust3: 'PWA',
+  <!-- ── CHAT WINDOW ── -->
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">
+          <i data-lucide="bot" width="20" height="20"></i>
+        </div>
+        <div>
+          <div class="chat-name">مساعد 360 الذكي</div>
+          <div class="chat-status">متصل الآن</div>
+        </div>
+      </div>
+      <button class="chat-close" id="closeChat">
+        <i data-lucide="x" width="20" height="20"></i>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-content">أهلاً بك! أنا مساعدك الذكي. كيف يمكنني مساعدتك في التعرف على نظام 360 اليوم؟</div>
+        <div class="message-time">الآن</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا...">
+      <button id="sendMessage">
+        <i data-lucide="send" width="18" height="18"></i>
+      </button>
+    </div>
+  </div>
 
-                platforms_title: 'توطين 360 في كل أجهزتك',
-                platforms_subtitle: 'يعمل تطبيق توطين 360 على مختلف اجهزتك بكل أنواعها ، مع تزامن بيانات لحظي',
-                platform_desktop: 'الحواسيب',
-                platform_android: 'أجهزة الأندرويد',
-                platform_ios: 'أجهزة الآيفون',
+  <script src="lucide.min.js"></script>
 
-                mission_badge: 'الرؤية والرسالة',
-                mission_title: 'رقمنة العمليات المعقدة\nفي بيئة موحدة',
-                mission_desc1: 'يجمع توطين 360 بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة. مصمم ليعمل بكفاءة مطلقة على الهواتف الذكية مع دعم الوضع الليلي المريح للعين.',
-                mission_desc2: 'تكمن القيمة المضافة في "الترابط المعماري"؛ فالمصروف المدخل يمكن ربطه مباشرة بمشروع معين، أو شحنة، أو خط إنتاج، مما يمنح الإدارة العليا رؤية 360 درجة لجميع التكاليف والأرباح من شاشة واحدة.',
-                mission_point1: 'تزامن لحظي', mission_point2: 'عمل دون اتصال PWA', mission_point3: 'تعدد العملات',
-                placeholder_title: 'صورة توضيحية', placeholder_desc: 'سيتم استبدالها بتصميم معبر عن الرؤية',
-
-                modules_badge: 'الوظائف الأساسية',
-                modules_title: 'وحدات النظام المتكاملة',
-                modules_subtitle: 'حلول شاملة تغطي كافة الجوانب التشغيلية لشركتك',
-                mod1_title: 'الصناديق والسيولة', mod1_subtitle: 'إدارة النقدية والبنوك',
-                mod1_desc: 'تتبع حركات الدخول والخروج ونقل الأموال بين الصناديق المتعددة والتحكم بالعملات بسهولة وأمان.',
-                mod2_title: 'دفتر الأستاذ', mod2_subtitle: 'القيود المحاسبية',
-                mod2_desc: 'تتبع العمليات الدائنة والمدينة، وحساب الأرصدة التراكمية للعملاء والموردين، وإجراء التسويات المحاسبية.',
-                mod3_title: 'الأعمال', mod3_subtitle: 'المصروفات والإيرادات',
-                mod3_desc: 'تسجيل المصروفات والإيرادات المباشرة المستقلة مع إمكانية ربطها بالمشاريع أو خطوط الإنتاج.',
-                mod4_title: 'المشاريع', mod4_subtitle: 'التكاليف والأرباح',
-                mod4_desc: 'حساب تكاليف المشاريع، أرباحها، وتتبع نسب الإنجاز والدفعات المرتبطة بكل مشروع على حدة.',
-                mod5_title: 'الشحن والحاويات', mod5_subtitle: 'اللوجستيات والجمارك',
-                mod5_desc: 'تتبع الحاويات، الشحنات، المصاريف اللوجستية وتكاليف التخليص الجمركي بكل دقة وشفافية.',
-                mod6_title: 'الإنتاج والتصنيع', mod6_subtitle: 'خطوط الإنتاج',
-                mod6_desc: 'حساب تكاليف المواد الخام والمبيعات، ومراقبة خطوط الإنتاج والعمليات التصنيعية لحظياً.',
-                placeholder_module: 'صورة القسم',
-
-                arch_badge: 'البنية التقنية',
-                arch_title: 'هيكلية التطبيق المعيارية',
-                arch_subtitle: 'نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط شركتك',
-                arch_dashboard: 'لوحة القيادة الرئيسية',
-                arch_funds: 'الصناديق', arch_accounts: 'الحسابات',
-                arch_business: 'الأعمال', arch_projects: 'المشاريع',
-                arch_shipping: 'الشحن', arch_production: 'الإنتاج',
-                arch_reports: 'التقارير', arch_documents: 'المستندات التجارية',
-                arch_details_title: 'بنية برمجية متقدمة',
-                arch_details_desc: 'يعتمد التطبيق على هيكلية برمجية تفصل النظام إلى وحدات متكاملة (Modules)، كل وحدة تعمل باستقلالية كاملة مع إمكانية الربط الذكي بينها.',
-                arch_feature1: 'تزامن لحظي وأمان سحابي',
-                arch_feature1_desc: 'مبني على بنية Supabase السحابية لضمان تزامن البيانات في الوقت الفعلي بين فريق العمل.',
-                arch_feature2: 'تصميم متجاوب ومريح',
-                arch_feature2_desc: 'واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي المريح للعين.',
-                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Security',
-
-                why_title: 'لماذا توطين 360؟',
-                why_subtitle: 'نقاط القوة التنافسية القابلة للتسويق',
-                why1_title: 'تصميم عصري متجاوب',
-                why1_desc: 'واجهة مستخدم مبنية لتعمل بكفاءة مطلقة على الهواتف الذكية وتدعم الوضع الليلي (Dark Mode) المريح للعين.',
-                why2_title: 'تطبيق ويب تقدمي PWA',
-                why2_desc: 'إمكانية تحميل التطبيق مباشرة على الهواتف والأجهزة اللوحية وتصفحه بتجربة التطبيقات الأصلية Native-like.',
-                why3_title: 'تزامن لحظي وأمان',
-                why3_desc: 'مبني على بنية Supabase السحابية لضمان تزامن البيانات في الوقت الفعلي مع نظام صلاحيات صارم مبني على الأدوار RBAC.',
-                why4_title: 'تعدد العملات الذكي',
-                why4_desc: 'نظام متكامل لتتبع وإدارة أسعار الصرف والفروقات المالية بين العملات المختلفة بذكاء.',
-                why5_title: 'تجربة عربية أصيلة RTL',
-                why5_desc: 'تصميم مبني من الصفر ليدعم الواجهات العربية من اليمين لليسار بخطوط وتنسيقات مناسبة للمستخدم العربي.',
-                why6_title: 'بنية وحدات مرنة',
-                why6_desc: 'نظام قابل للتخصيص يسمح بتفعيل أو إخفاء وحدات معينة لتناسب حجم ونوع نشاط الشركة Scalability.',
-
-                how_to_badge: 'دليل الاستخدام', how_to_title: 'كيف تستخدم التطبيق', how_to_subtitle: 'شاهد هذا الفيديو التعريفي لتتعرف على واجهة التطبيق وكيفية البدء في إدارة أعمالك بكل سهولة.',
-                reports_badge: 'التقارير والمستندات',
-                reports_title: 'تقارير شاملة\nومستندات احترافية',
-                reports_desc: 'توليد فواتير وعروض أسعار احترافية، استخراج تقارير الأداء والموازنات، واستيراد/تصدير البيانات لدعم المحاسبة الخارجية.',
-                reports_point1: 'تقارير الأداء المالي لحظية',
-                reports_point2: 'فواتير وعروض أسعار احترافية',
-                reports_point3: 'استيراد وتصدير البيانات',
-                reports_point4: 'تلخيص النشاط المالي والتشغيلي',
-                placeholder_report1: 'تقرير الأداء المالي', placeholder_report2: 'تحليل المشاريع',
-                placeholder_report3: 'فاتورة تجارية', placeholder_report4: 'لوحة التحكم',
-
-                cta_title: 'جهز عملك للمستقبل',
-                cta_subtitle: 'انضم إلى آلاف الشركات التي تثق بتوطين 360 لإدارة مواردها. ابدأ رحلتك نحو التحول الرقمي اليوم.',
-                cta_button: 'تواصل معنا',
-
-                footer_desc: 'نظام متكامل لإدارة المؤسسات يجمع بين القوة والبساطة لمساعدتك على تنمية عملك.',
-                footer_links: 'وصول سريع',
-                footer_contact: 'تواصل معنا',
-                footer_address: 'الرياض، المملكة العربية السعودية',
-                footer_newsletter: 'النشرة البريدية',
-                footer_newsletter_desc: 'اشترك للحصول على آخر الأخبار والتحديثات',
-                footer_rights: 'جميع الحقوق محفوظة © 2026 توطين 360',
-                footer_privacy: 'سياسة الخصوصية',
-                footer_terms: 'شروط الاستخدام',
-
-                chat_title: 'مساعد توطين 360',
-                chat_status: 'متصل الآن',
-                chat_welcome: 'مرحباً! أنا مساعد توطين 360 الذكي. يمكنك سؤالي عن أي شيء يتعلق بالتطبيق، الاقسام، المميزات، أو كيفية البدء. كيف يمكنني مساعدتك اليوم؟',
-                chat_placeholder: 'اكتب رسالتك هنا...',
-                chat_quick1: 'ما هو توطين 360؟',
-                chat_quick2: 'الاقسام المتاحة',
-                chat_quick3: 'كيف أبدأ؟'
-            },
-            en: {
-                dir: 'ltr', font: 'font-en',
-                brand: 'Tawteen 360', brand_slogan: 'Your Complete Financial System',
-                nav_features: 'Features', nav_modules: 'Modules', nav_architecture: 'Architecture', nav_about: 'About', nav_contact: 'Contact', nav_cta: 'Get Started',
-                language: 'Language',
-                hero_badge: 'Integrated ERP System v3.2',
-                hero_title_1: '', hero_title_2: 'Tawteen 360', hero_title_3: 'Complete System',
-                hero_subtitle: 'Smart solutions for managing your financials, projects, shipping, and production on one secure, reliable cloud platform.',
-                hero_cta_primary: 'Start Free Today', hero_cta_secondary: 'Explore Modules',
-                hero_trust1: 'Bank-Grade Security', hero_trust2: '100% Cloud', hero_trust3: 'PWA',
-
-                platforms_title: 'Tawteen 360 on All Your Devices',
-                platforms_subtitle: 'Tawteen 360 works on all your devices with real-time data synchronization',
-                platform_desktop: 'Computers',
-                platform_android: 'Android Devices',
-                platform_ios: 'iOS Devices',
-
-                mission_badge: 'Vision & Mission',
-                mission_title: 'Digitizing Complex Operations\nin a Unified Environment',
-                mission_desc1: 'Tawteen 360 combines financial management, accounting, project management, shipping, and production in one cloud platform. Designed to work with absolute efficiency on smartphones with eye-comforting Dark Mode support.',
-                mission_desc2: 'The added value lies in the "Architectural Interconnection"; an expense entry can be directly linked to a specific project, shipment, or production line, giving management a 360-degree view of all costs and profits from a single screen.',
-                mission_point1: 'Real-time Sync', mission_point2: 'Offline PWA', mission_point3: 'Multi-Currency',
-                placeholder_title: 'Illustration Image', placeholder_desc: 'Will be replaced with a meaningful design',
-
-                modules_badge: 'Core Functions',
-                modules_title: 'Integrated System Modules',
-                modules_subtitle: 'Comprehensive solutions covering all operational aspects of your company',
-                mod1_title: 'Funds & Liquidity', mod1_subtitle: 'Cash & Bank Management',
-                mod1_desc: 'Track inflows and outflows and transfer funds between multiple funds and currencies with ease and security.',
-                mod2_title: 'General Ledger', mod2_subtitle: 'Accounting Entries',
-                mod2_desc: 'Track credit and debit operations, calculate cumulative balances for customers and suppliers, and perform accounting reconciliations.',
-                mod3_title: 'Business', mod3_subtitle: 'Expenses & Revenue',
-                mod3_desc: 'Record direct independent expenses and revenues with the ability to link them to projects or production lines.',
-                mod4_title: 'Projects', mod4_subtitle: 'Costs & Profits',
-                mod4_desc: 'Calculate project costs, profits, and track completion percentages and associated payments for each project.',
-                mod5_title: 'Shipping & Containers', mod5_subtitle: 'Logistics & Customs',
-                mod5_desc: 'Track containers, shipments, logistics expenses and customs clearance costs with precision and transparency.',
-                mod6_title: 'Production & Manufacturing', mod6_subtitle: 'Production Lines',
-                mod6_desc: 'Calculate raw material costs and sales, and monitor production lines and manufacturing operations in real-time.',
-                placeholder_module: 'Module Image',
-
-                arch_badge: 'Technical Architecture',
-                arch_title: 'Modular Application Structure',
-                arch_subtitle: 'A customizable system that allows enabling or hiding specific modules to fit your company size and activity type',
-                arch_dashboard: 'Main Dashboard',
-                arch_funds: 'Funds', arch_accounts: 'Accounts',
-                arch_business: 'Business', arch_projects: 'Projects',
-                arch_shipping: 'Shipping', arch_production: 'Production',
-                arch_reports: 'Reports', arch_documents: 'Commercial Documents',
-                arch_details_title: 'Advanced Software Architecture',
-                arch_details_desc: 'The application relies on a software architecture that divides the system into integrated Modules, each operating with complete independence while enabling smart interconnection between them.',
-                arch_feature1: 'Real-time Sync & Cloud Security',
-                arch_feature1_desc: 'Built on Supabase cloud architecture to ensure real-time data synchronization across the team.',
-                arch_feature2: 'Responsive & Comfortable Design',
-                arch_feature2_desc: 'User interface built to work with absolute efficiency on smartphones and supports eye-comforting Dark Mode.',
-                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Security',
-
-                why_title: 'Why Tawteen 360?',
-                why_subtitle: 'Competitive advantages and selling points',
-                why1_title: 'Modern Responsive Design',
-                why1_desc: 'User interface built to work with absolute efficiency on smartphones and supports eye-comforting Dark Mode.',
-                why2_title: 'Progressive Web App PWA',
-                why2_desc: 'Ability to download the app directly on phones and tablets and browse with a native-like experience.',
-                why3_title: 'Real-time Sync & Security',
-                why3_desc: 'Built on Supabase cloud architecture with a strict Role-Based Access Control (RBAC) permission system.',
-                why4_title: 'Smart Multi-Currency',
-                why4_desc: 'An integrated system for tracking and managing exchange rates and financial differences between currencies.',
-                why5_title: 'Authentic Arabic RTL Experience',
-                why5_desc: 'Designed from scratch to support Arabic right-to-left interfaces with fonts and layouts suitable for Arab users.',
-                why6_title: 'Flexible Modular Architecture',
-                why6_desc: 'A customizable system that allows enabling or hiding specific modules to fit your company size and activity type.',
-
-                how_to_badge: 'User Guide', how_to_title: 'How to Use the App', how_to_subtitle: 'Watch this introductory video to learn about the app interface and how to start managing your business easily.',
-                reports_badge: 'Reports & Documents',
-                reports_title: 'Comprehensive Reports\nand Professional Documents',
-                reports_desc: 'Generate professional invoices and quotations, extract performance and budget reports, and import/export data to support external accounting.',
-                reports_point1: 'Real-time financial performance reports',
-                reports_point2: 'Professional invoices and quotations',
-                reports_point3: 'Data import and export',
-                reports_point4: 'Financial and operational activity summary',
-                placeholder_report1: 'Financial Performance Report', placeholder_report2: 'Project Analysis',
-                placeholder_report3: 'Commercial Invoice', placeholder_report4: 'Dashboard View',
-
-                cta_title: 'Prepare Your Business for the Future',
-                cta_subtitle: 'Join thousands of companies that trust Tawteen 360 to manage their resources. Start your digital transformation journey today.',
-                cta_button: 'Contact Us',
-
-                footer_desc: 'An integrated enterprise management system that combines power and simplicity to help you grow your business.',
-                footer_links: 'Quick Access',
-                footer_contact: 'Contact Us',
-                footer_address: 'Riyadh, Kingdom of Saudi Arabia',
-                footer_newsletter: 'Newsletter',
-                footer_newsletter_desc: 'Subscribe to get the latest news and updates',
-                footer_rights: 'All Rights Reserved 2026 Tawteen 360',
-                footer_privacy: 'Privacy Policy',
-                footer_terms: 'Terms of Use',
-
-                chat_title: 'Tawteen 360 Assistant',
-                chat_status: 'Online now',
-                chat_welcome: 'Hello! I am the Tawteen 360 smart assistant. You can ask me anything about the app, modules, features, or how to get started. How can I help you today?',
-                chat_placeholder: 'Type your message here...',
-                chat_quick1: 'What is Tawteen 360?',
-                chat_quick2: 'Available modules',
-                chat_quick3: 'How to start?'
-            },
-            tr: {
-                dir: 'ltr', font: 'font-tr',
-                brand: 'Tawteen 360', brand_slogan: 'Kapsamlı Finansal Sisteminiz',
-                nav_features: 'Özellikler', nav_modules: 'Modüller', nav_architecture: 'Mimari', nav_about: 'Hakkında', nav_contact: 'İletişim', nav_cta: 'Hemen Başlayın',
-                language: 'Dil',
-                hero_badge: 'Entegre ERP Sistemi v3.2',
-                hero_title_1: '', hero_title_2: 'Tawteen 360', hero_title_3: 'Entegre Sistem',
-                hero_subtitle: 'Finansal, proje, nakliye ve üretim yönetimi için akıllı çözümler tek güvenli bulut platformunda.',
-                hero_cta_primary: 'Ücretsiz Başlayın', hero_cta_secondary: 'Modülleri Keşfedin',
-                hero_trust1: 'Banka Düzeyinde Güvenlik', hero_trust2: '%100 Bulut', hero_trust3: 'PWA',
-
-                platforms_title: 'Tüm Cihazlarınızda Tawteen 360',
-                platforms_subtitle: 'Tawteen 360, gerçek zamanlı veri senkronizasyonu ile tüm cihazlarınızda çalışır',
-                platform_desktop: 'Bilgisayarlar',
-                platform_android: 'Android Cihazlar',
-                platform_ios: 'iOS Cihazlar',
-
-                mission_badge: 'Vizyon ve Misyon',
-                mission_title: 'Karmaşık Operasyonları\nBirleşik Bir Ortamda Dijitalleştirme',
-                mission_desc1: 'Tawteen 360, finansal yönetim, muhasebe, proje yönetimi, nakliye ve üretimi tek bir bulut platformunda birleştirir. Akıllı telefonlarda mutlak verimlilikle çalışacak şekilde tasarlanmıştır ve gözü rahatlatan Karanlık Mod desteğine sahiptir.',
-                mission_desc2: 'Katma değer, "Mimari Birbirine Bağlılık"ta yatmaktadır; girilen bir gider doğrudan belirli bir projeye, sevkiyata veya üretim hattına bağlanabilir, bu da yönetime tek bir ekrandan tüm maliyetlerin ve karların 360 derecelik bir görünümünü sağlar.',
-                mission_point1: 'Gerçek Zamanlı Senkronizasyon', mission_point2: 'Çevrimdışı PWA', mission_point3: 'Çoklu Para Birimi',
-                placeholder_title: 'Açıklayıcı Görsel', placeholder_desc: 'Anlamlı bir tasarımla değiştirilecektir',
-
-                modules_badge: 'Temel İşlevler',
-                modules_title: 'Entegre Sistem Modülleri',
-                modules_subtitle: 'Şirketinizin tüm operasyonel yönlerini kapsayan kapsamlı çözümler',
-                mod1_title: 'Fonlar ve Likidite', mod1_subtitle: 'Nakit ve Banka Yönetimi',
-                mod1_desc: 'Giriş ve çıkış hareketlerini takip edin ve fonlar arasında kolaylık ve güvenle para transferi yapın.',
-                mod2_title: 'Büyük Defter', mod2_subtitle: 'Muhasebe Kayıtları',
-                mod2_desc: 'Alacak ve borç işlemlerini takip edin, müşteri ve tedarikçi birikimli bakiyelerini hesaplayın.',
-                mod3_title: 'İşletme', mod3_subtitle: 'Giderler ve Gelirler',
-                mod3_desc: 'Projelere veya üretim hatlarına bağlama yeteneğiyle doğrudan bağımsız gider ve gelirleri kaydedin.',
-                mod4_title: 'Projeler', mod4_subtitle: 'Maliyetler ve Karlar',
-                mod4_desc: 'Proje maliyetlerini, karlarını ve her proje için tamamlanma yüzdelerini takip edin.',
-                mod5_title: 'Nakliye ve Konteynerler', mod5_subtitle: 'Lojistik ve Gümrük',
-                mod5_desc: 'Konteynerleri, sevkiyatları, lojistik masrafları ve gümrük muayene maliyetlerini takip edin.',
-                mod6_title: 'Üretim ve İmalat', mod6_subtitle: 'Üretim Hatları',
-                mod6_desc: 'Hammadde maliyetlerini ve satışları hesaplayın ve üretim hatlarını gerçek zamanlı izleyin.',
-                placeholder_module: 'Modül Görseli',
-
-                arch_badge: 'Teknik Mimari',
-                arch_title: 'Modüler Uygulama Yapısı',
-                arch_subtitle: 'Şirketinizin büyüklüğüne ve faaliyet türüne uygun modülleri etkinleştirmenize veya gizlemenize olanak tanıyan özelleştirilebilir bir sistem',
-                arch_dashboard: 'Ana Kontrol Paneli',
-                arch_funds: 'Fonlar', arch_accounts: 'Hesaplar',
-                arch_business: 'İşletme', arch_projects: 'Projeler',
-                arch_shipping: 'Nakliye', arch_production: 'Üretim',
-                arch_reports: 'Raporlar', arch_documents: 'Ticari Belgeler',
-                arch_details_title: 'Gelişmiş Yazılım Mimarisi',
-                arch_details_desc: 'Uygulama, sistemi entegre Modüllere ayıran bir yazılım mimarisine dayanmaktadır; her biri tam bağımsızlıkla çalışırken aralarında akıllı birbirine bağlanma sağlar.',
-                arch_feature1: 'Gerçek Zamanlı Senkronizasyon ve Bulut Güvenliği',
-                arch_feature1_desc: 'Ekip genelinde gerçek zamanlı veri senkronizasyonunu sağlamak için Supabase bulut mimarisi üzerine inşa edilmiştir.',
-                arch_feature2: 'Duyarlı ve Rahat Tasarım',
-                arch_feature2_desc: 'Akıllı telefonlarda mutlak verimlilikle çalışacak ve gözü rahatlatan Karanlık Modu destekleyecek şekilde oluşturulmuş kullanıcı arayüzü.',
-                placeholder_arch1: 'Supabase Backend', placeholder_arch2: 'RBAC Güvenlik',
-
-                why_title: 'Neden Tawteen 360?',
-                why_subtitle: 'Rekabetçi avantajlar ve satış noktaları',
-                why1_title: 'Modern Duyarlı Tasarım',
-                why1_desc: 'Akıllı telefonlarda mutlak verimlilikle çalışacak ve gözü rahatlatan Karanlık Modu destekleyen kullanıcı arayüzü.',
-                why2_title: 'Progresif Web Uygulaması PWA',
-                why2_desc: 'Uygulamayı doğrudan telefonlara ve tabletlerine indirme ve yerel uygulama benzeri deneyimle gezinme olanağı.',
-                why3_title: 'Gerçek Zamanlı Senkronizasyon ve Güvenlik',
-                why3_desc: 'Supabase bulut mimarisi üzerine inşa edilmiş, katı Rol Tabanlı Erişim Kontrolü (RBAC) izin sistemi ile.',
-                why4_title: 'Akıllı Çoklu Para Birimi',
-                why4_desc: 'Para birimleri arasındaki döviz kurlarını ve finansal farkları takip ve yönetmek için entegre bir sistem.',
-                why5_title: 'Otantik Arapça RTL Deneyimi',
-                why5_desc: 'Arapça sağdan sola arayüzlerini desteklemek için sıfırdan tasarlanmış, Arap kullanıcılara uygun yazı tipleri ve düzenler ile.',
-                why6_title: 'Esnek Modüler Mimari',
-                why6_desc: 'Şirketinizin büyüklüğüne ve faaliyet türüne uygun modülleri etkinleştirmenize veya gizlemenize olanak tanıyan özelleştirilebilir bir sistem.',
-
-                how_to_badge: 'Kullanım Kılavuzu', how_to_title: 'Uygulama Nasıl Kullanılır', how_to_subtitle: 'Uygulama arayüzünü ve işinizi kolayca yönetmeye nasıl başlayacağınızı öğrenmek için bu tanıtım videosunu izleyin.',
-                reports_badge: 'Raporlar ve Belgeler',
-                reports_title: 'Kapsamlı Raporlar\nve Profesyonel Belgeler',
-                reports_desc: 'Profesyonel faturalar ve teklifler oluşturun, performans ve bütçe raporları çıkarın ve harici muhasebeyi desteklemek için veri içe/dışa aktarın.',
-                reports_point1: 'Gerçek zamanlı finansal performans raporları',
-                reports_point2: 'Profesyonel faturalar ve teklifler',
-                reports_point3: 'Veri içe ve dışa aktarma',
-                reports_point4: 'Finansal ve operasyonel faaliyet özeti',
-                placeholder_report1: 'Finansal Performans Raporu', placeholder_report2: 'Proje Analizi',
-                placeholder_report3: 'Ticari Fatura', placeholder_report4: 'Kontrol Paneli Görünümü',
-
-                cta_title: 'İşletmenizi Geleceğe Hazırlayın',
-                cta_subtitle: 'Kaynaklarını yönetmek için Tawteen 360\'a güvenen binlerce şirkete katılın. Dijital dönüşüm yolculuğunuza bugün başlayın.',
-                cta_button: 'Bize Ulaşın',
-
-                footer_desc: 'İşletmenizi büyütmenize yardımcı olmak için güç ve sadelik bir arada getiren entegre bir kurumsal yönetim sistemi.',
-                footer_links: 'Hızlı Erişim',
-                footer_contact: 'İletişim',
-                footer_address: 'Riyad, Suudi Arabistan Krallığı',
-                footer_newsletter: 'Bülten',
-                footer_newsletter_desc: 'En son haber ve güncellemeleri almak için abone olun',
-                footer_rights: 'Tüm Hakları Saklıdır © 2026 Tawteen 360',
-                footer_privacy: 'Gizlilik Politikası',
-                footer_terms: 'Kullanım Koşulları',
-
-                chat_title: 'Tawteen 360 Asistanı',
-                chat_status: 'Çevrimiçi',
-                chat_welcome: 'Merhaba! Ben Tawteen 360 akıllı asistanıyım. Uygulama, modüller, özellikler veya nasıl başlayacağınız hakkında bana her şeyi sorabilirsiniz. Size bugün nasıl yardımcı olabilirim?',
-                chat_placeholder: 'Mesajınızı buraya yazın...',
-                chat_quick1: 'Tawteen 360 nedir?',
-                chat_quick2: 'Mevcut modüller',
-                chat_quick3: 'Nasıl başlarım?'
-            }
-        };
-
-        let currentLang = 'ar';
-        let chatOpen = false;
-
-        // ==================== LANGUAGE SWITCHER ====================
-        function switchLanguage(lang) {
-            currentLang = lang;
-            const t = translations[lang];
-            const html = document.documentElement;
-            html.dir = t.dir;
-            html.lang = lang;
-            document.body.className = document.body.className.replace(/font-(ar|en|tr)/g, '');
-            document.body.classList.add(t.font);
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    el.style.opacity = '0';
-                    setTimeout(() => {
-                        el.textContent = t[key];
-                        el.style.opacity = '1';
-                    }, 150);
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-
-            const labels = { ar: 'العربية', en: 'English', tr: 'Türkçe' };
-            document.getElementById('current-lang-label').textContent = labels[lang];
-            document.getElementById('lang-dropdown').classList.add('hidden-dropdown');
-            document.getElementById('lang-arrow').style.transform = 'rotate(0deg)';
-        }
-
-        function toggleLangDropdown() {
-            const dropdown = document.getElementById('lang-dropdown');
-            const arrow = document.getElementById('lang-arrow');
-            const isHidden = dropdown.classList.contains('hidden-dropdown');
-            if (isHidden) {
-                dropdown.classList.remove('hidden-dropdown');
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                dropdown.classList.add('hidden-dropdown');
-                arrow.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        function toggleLangDropdownMobile() { toggleMobileMenu(); }
-
-        document.addEventListener('click', (e) => {
-            const container = document.getElementById('lang-dropdown-container');
-            const dropdown = document.getElementById('lang-dropdown');
-            if (!container.contains(e.target)) {
-                dropdown.classList.add('hidden-dropdown');
-                document.getElementById('lang-arrow').style.transform = 'rotate(0deg)';
-            }
-        });
-
-        // ==================== MOBILE MENU ====================
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        }
-
-        // ==================== SCROLL ANIMATIONS ====================
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // ==================== NAVBAR SCROLL ====================
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 50) navbar.classList.add('shadow-md');
-            else navbar.classList.remove('shadow-md');
-        });
-
-        // ==================== SMOOTH SCROLL ====================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        // ==================== CHATBOT ====================
-        function toggleChat() {
-            const chatBox = document.getElementById('chat-window');
-            const iconOpen = document.getElementById('chat-icon-open');
-            const iconClose = document.getElementById('chat-icon-close');
-            chatOpen = !chatOpen;
-            if (chatOpen) {
-                if (chatBox) chatBox.classList.remove('closed');
-                if (iconOpen) iconOpen.classList.add('hidden');
-                if (iconClose) iconClose.classList.remove('hidden');
-            } else {
-                if (chatBox) chatBox.classList.add('closed');
-                if (iconOpen) iconOpen.classList.remove('hidden');
-                if (iconClose) iconClose.classList.add('hidden');
-            }
-        }
-
-        const botResponses = {
-            ar: {
-                'ما هو توطين 360': 'توطين 360 (المساعد المالي v3.2) هو نظام متكامل ومحمول لإدارة الأعمال، يجمع بين الإدارة المالية، المحاسبة، إدارة المشاريع، الشحن، والإنتاج في منصة سحابية واحدة.',
-                'الاقسام المتاحة': 'الاقسام المتاحة هي: الصناديق والسيولة، دفتر الأستاذ، الأعمال، المشاريع، الشحن والحاويات، الإنتاج والتصنيع، التقارير، والمستندات التجارية.',
-                'كيف أبدأ': 'يمكنك البدء بالتواصل معنا عبر نموذج الاتصال في أسفل الصفحة، أو الضغط على زر "ابدأ الآن" للحصول على نسخة تجريبية مجانية.',
-                'default': 'شكراً لتواصلك! يمكنني الإجابة على استفساراتك حول توطين 360. جرب طرح أسئلة مثل: "ما هي الاقسام المتاحة؟" أو "كيف أبدأ؟"'
-            },
-            en: {
-                'what is tawteen 360': 'Tawteen 360 (Financial Assistant v3.2) is an integrated and portable business management system that combines financial management, accounting, project management, shipping, and production in one cloud platform.',
-                'available modules': 'Available modules are: Funds & Liquidity, General Ledger, Business, Projects, Shipping & Containers, Production & Manufacturing, Reports, and Commercial Documents.',
-                'how to start': 'You can start by contacting us through the contact form at the bottom of the page, or clicking the "Get Started" button for a free trial.',
-                'default': 'Thank you for reaching out! I can answer your questions about Tawteen 360. Try asking: "What are the available modules?" or "How to start?"'
-            },
-            tr: {
-                'tawteen 360 nedir': 'Tawteen 360 (Finansal Asistan v3.2), finansal yönetim, muhasebe, proje yönetimi, nakliye ve üretimi tek bir bulut platformunda birleştiren entegre ve taşınabilir bir iş yönetim sistemidir.',
-                'mevcut modüller': 'Mevcut modüller: Fonlar ve Likidite, Büyük Defter, İşletme, Projeler, Nakliye ve Konteynerler, Üretim ve İmalat, Raporlar ve Ticari Belgeler.',
-                'nasıl başlarım': 'Sayfanın altındaki iletişim formundan bize ulaşarak veya "Hemen Başlayın" düğmesine tıklayarak ücretsiz deneme sürümü alarak başlayabilirsiniz.',
-                'default': 'Ulaştığınız için teşekkürler! Tawteen 360 hakkındaki sorularınızı yanıtlayabilirim. Şunu sormayı deneyin: "Mevcut modüller nelerdir?" veya "Nasıl başlarım?"'
-            }
-        };
-
-        function addMessage(text, sender) {
-            const container = document.getElementById('chat-messages');
-            const bubble = document.createElement('div');
-            bubble.className = `chat-bubble ${sender}`;
-            bubble.textContent = text;
-            container.appendChild(bubble);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function showTyping() {
-            const container = document.getElementById('chat-messages');
-            const typing = document.createElement('div');
-            typing.id = 'typing-indicator';
-            typing.className = 'chat-bubble bot';
-            typing.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
-            container.appendChild(typing);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function hideTyping() {
-            const typing = document.getElementById('typing-indicator');
-            if (typing) typing.remove();
-        }
-
-        function getBotResponse(input) {
-            const langResponses = botResponses[currentLang];
-            const lower = input.toLowerCase();
-            for (const key in langResponses) {
-                if (lower.includes(key)) return langResponses[key];
-            }
-            return langResponses['default'];
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if (!text) return;
-            addMessage(text, 'user');
-            input.value = '';
-            showTyping();
-            setTimeout(() => {
-                hideTyping();
-                addMessage(getBotResponse(text), 'bot');
-            }, 1200);
-        }
-
-        function sendQuickMessage(text) {
-            addMessage(text, 'user');
-            showTyping();
-            setTimeout(() => {
-                hideTyping();
-                addMessage(getBotResponse(text), 'bot');
-            }, 1200);
-        }
-    </script>
-
-    <script src="lucide.min.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
+  <script src="main.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
